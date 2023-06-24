@@ -1,8 +1,10 @@
 import './globals.css'
+import { Metadata } from 'next'
 
 // const merriweather  = Merriweather({ subsets: ['latin'], display: 'swap', weight: ['300', '700'], });
 
 export const metadata = {
+  // metadataBase: new URL('https://luojrshin.com'),
   title: 'Luo Jr-Shin',
   description: 'Sorry, there is some construction going on here...',
   openGraph: {

@@ -45,12 +45,37 @@ const allsrc = [
 const mysrc = allsrc.map((src) => src);
 
 export default function Home() {
-  
+
   /*** Get window width and height on resize ***/
+  
+  // const [windowSize, setWindowSize] = useState([
+  //   window.innerWidth,
+  //   window.innerHeight,
+  // ]);
+  
+  // useEffect(() => {
+  //   const handleWindowResize = () => {
+  //     setWindowSize([window.innerWidth, window.innerHeight]);
+  //   };
+
+  //   window.addEventListener("resize", handleWindowResize);
+
+  //   return () => {
+  //     window.removeEventListener("resize", handleWindowResize);
+  //   };
+  // }, []);
+  let myw
+  let myh
+  if (typeof window !== "undefined") {
+    //This code is executed in the browser
+     myw = window.innerWidth
+     myh = window.innerHeight
+ }
   const [windowSize, setWindowSize] = useState([
-    window.innerWidth,
-    window.innerHeight,
+    myw,
+    myh,
   ]);
+  
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
