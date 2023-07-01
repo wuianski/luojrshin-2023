@@ -228,6 +228,7 @@ export default function Home() {
             width={500}
             height={500}
             alt="Picture of the author"
+            style={{objectFit:"contain"}}
             sizes="50vw"
           />
         </div>
