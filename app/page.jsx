@@ -196,7 +196,7 @@ export default function Home() {
             </div>
             <div className={"pb15"}>
               <div className={`${merriweather300.className} fontPara`}>
-              For CV, Bio, and projects you could visit:
+              For CV, Bio, and Projects you could visit:
               </div>
               <div className={`${merriweather300.className} fontPara`}>
                 <a
