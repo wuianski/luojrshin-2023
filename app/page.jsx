@@ -5,20 +5,20 @@ import { merriweather300 } from "./fonts";
 import { useEffect, useState } from "react";
 
 const img1 =
-  "/images/(FULL SIZE) Liverpool Biennial 2021 -Press  Biennial 2021 ©Rob Battersby 6.jpg";
+  "/images/Liverpool_Biennial_2021_6.jpg";
 const img2 =
-  "/images/(FULL SIZE) Liverpool Biennial 2021 -Press  Biennial 2021 ©Rob Battersby 15.jpg";
+  "/images/Liverpool_Biennial_2021_15.jpg";
 const img3 =
-  "/images/(FULL SIZE) Liverpool Biennial 2021 -Press  Biennial 2021 ©Rob Battersby 25.jpg";
+  "/images/Liverpool_Biennial_2021_25.jpg";
 const img4 = "/images/1932753_10152784105652188_8026870824301859032_o.jpg";
 const img5 = "/images/20211025_世界不隨人類生滅_0362_Small.jpg";
 const img6 = "/images/20211025_世界不隨人類生滅_0400_Small.jpg";
 const img7 = "/images/260206712_4869562623062814_13764506233909917_n.jpg";
 const img8 = "/images/261044331_4869562289729514_4129391925890837253_n.jpg";
-const img9 = "/images/210913160704 mini sRGB網路_.jpg";
-const img10 = "/images/210913172042 mini sRGB網路_.jpg";
+const img9 = "/images/210913160704.jpg";
+const img10 = "/images/210913172042.jpg";
 const img11 = "/images/card02_crop.png";
-const img12 = "/images/Cat Litter Cat (crouching).jpg";
+const img12 = "/images/cat_litter_cat.jpg";
 const img13 = "/images/DSCF1747.jpg";
 const img14 = "/images/small_演算法拷貝.png";
 const img15 = "/images/Urinal-green_png-01.png";
