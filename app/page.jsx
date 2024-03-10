@@ -4,12 +4,9 @@ import { merriweather700 } from "./fonts";
 import { merriweather300 } from "./fonts";
 import { useEffect, useState } from "react";
 
-const img1 =
-  "/images/Liverpool_Biennial_2021_6.jpg";
-const img2 =
-  "/images/Liverpool_Biennial_2021_15.jpg";
-const img3 =
-  "/images/Liverpool_Biennial_2021_25.jpg";
+const img1 = "/images/Liverpool_Biennial_2021_6.jpg";
+const img2 = "/images/Liverpool_Biennial_2021_15.jpg";
+const img3 = "/images/Liverpool_Biennial_2021_25.jpg";
 const img4 = "/images/1932753_10152784105652188_8026870824301859032_o.jpg";
 const img5 = "/images/20211025_世界不隨人類生滅_0362_Small.jpg";
 const img6 = "/images/20211025_世界不隨人類生滅_0400_Small.jpg";
@@ -45,14 +42,13 @@ const allsrc = [
 const mysrc = allsrc.map((src) => src);
 
 export default function Home() {
-
   /*** Get window width and height on resize ***/
-  
+
   // const [windowSize, setWindowSize] = useState([
   //   window.innerWidth,
   //   window.innerHeight,
   // ]);
-  
+
   // useEffect(() => {
   //   const handleWindowResize = () => {
   //     setWindowSize([window.innerWidth, window.innerHeight]);
@@ -64,18 +60,15 @@ export default function Home() {
   //     window.removeEventListener("resize", handleWindowResize);
   //   };
   // }, []);
-  let myw
-  let myh
+  let myw;
+  let myh;
   if (typeof window !== "undefined") {
     //This code is executed in the browser
-     myw = window.innerWidth
-     myh = window.innerHeight
- }
-  const [windowSize, setWindowSize] = useState([
-    myw,
-    myh,
-  ]);
-  
+    myw = window.innerWidth;
+    myh = window.innerHeight;
+  }
+  const [windowSize, setWindowSize] = useState([myw, myh]);
+
   useEffect(() => {
     const handleWindowResize = () => {
       setWindowSize([window.innerWidth, window.innerHeight]);
@@ -95,10 +88,10 @@ export default function Home() {
       setMousePos({ x: event.clientX, y: event.clientY });
     };
 
-    window.addEventListener('pointermove', handleMouseMove);
+    window.addEventListener("pointermove", handleMouseMove);
 
     return () => {
-      window.removeEventListener('pointermove', handleMouseMove);
+      window.removeEventListener("pointermove", handleMouseMove);
     };
   }, []);
 
@@ -192,11 +185,11 @@ export default function Home() {
           {/* en text */}
           <div className="bottom">
             <div className={`${merriweather700.className} fontPara pb15`}>
-            Sorry, there is some construction going on here...
+              Sorry, there is some construction going on here...
             </div>
             <div className={"pb15"}>
               <div className={`${merriweather300.className} fontPara`}>
-              For CV, Bio, and Projects you could visit:
+                For CV, Bio, and Projects you could visit:
               </div>
               <div className={`${merriweather300.className} fontPara`}>
                 <a
@@ -209,7 +202,7 @@ export default function Home() {
             </div>
             <div>
               <div className={`${merriweather300.className} fontPara`}>
-              More personal material:
+                More personal material:
               </div>
               <div className={`${merriweather300.className} fontPara`}>
                 <a target="_blank" href="https://www.instagram.com/luojrshin/">
@@ -222,26 +215,26 @@ export default function Home() {
         {/* image */}
         <div className={`w2-3`}>
           <Image
-            // priority
+            priority
             className={`floatR`}
             src={renderSrc}
             width={500}
             height={500}
             alt="Picture of the author"
-            style={{objectFit:"contain"}}
+            style={{ objectFit: "contain" }}
             sizes="50vw"
           />
         </div>
         <div className={`mobile`}>
           <Image
-            // priority
+            priority
             // className={`w100`}
             fill
             src={mysrc[0]}
             // width={200}
             // height={200}
             alt="Picture of the author"
-            style={{objectFit:"cover"}}
+            style={{ objectFit: "cover" }}
             sizes="100vw"
           />
         </div>

@@ -1,0 +1,16 @@
+.active {
+    color:#0000ff;
+}
+
+a:hover {
+    color:#F3F;
+}
+
+.myScroll {
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.myScroll::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari and Opera */
+}
