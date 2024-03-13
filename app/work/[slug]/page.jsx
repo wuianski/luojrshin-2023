@@ -3,13 +3,16 @@ import { notFound } from "next/navigation";
 import { readItem } from "@directus/sdk";
 import Box from "@mui/material/Box";
 import Image from "next/image";
-import styles from "./../styles.module.css";
+// grid image
+import PhotoGallery from "@/components/PhotoGallery";
+// one column image
+import OneColumn from "@/components/OneColumn";
 
 async function getPage(slug) {
   try {
     const page = await directus.request(
       readItem("posts", slug, {
-        fields: ["*", { image: ["*.*"] }],
+        fields: ["*", "*.*", { image: ["*.*"] }],
         filter: {
           _and: [
             {
@@ -29,51 +32,33 @@ async function getPage(slug) {
 
 export default async function DynamicPage({ params }) {
   const page = await getPage(params.slug);
+  const image_mode = page.mode.mode_name;
+  // console.log(image_mode);
+
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: 0, md: 0 }}>
       {page.content_en ? (
         <Box>
           <Box
-            className={styles.myLink}
+            className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_en }}
           />
           <Box
             pt={2}
             pb={2}
-            className={styles.myLink}
+            className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_tw }}
           />
         </Box>
       ) : null}
 
-      {/* <Box>{page.image}</Box> */}
-      <div>
-        {page.image.map((img) => (
-          <div key={img.id}>
-            <Box
-              sx={{
-                position: "relative",
-                // width: { xs: "100%", md: "100%" },
-                height: { xs: "100vw", md: "60dvh" },
-              }}
-              mb={1}
-              mt={1}
-            >
-              <Image
-                src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${img.directus_files_id.filename_disk}`}
-                alt="Picture of the author"
-                fill
-                priority
-                style={{
-                  objectFit: "contain", // cover, contain, none
-                  objectPosition: "left",
-                }}
-              />
-            </Box>
-            <Box>{img.directus_files_id.description}</Box>
-          </div>
-        ))}
-      </div>
+      {image_mode == "column" ? (
+        <Box sx={{ width: { xs: "100%", md: "50vw" } }}>
+          <OneColumn photos={page.image} />
+        </Box>
+      ) : (
+        <PhotoGallery photos={page.image} />
+      )}
     </Box>
   );
 }

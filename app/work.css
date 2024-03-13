@@ -14,3 +14,11 @@ a:hover {
 .myScroll::-webkit-scrollbar {
     display: none; /* for Chrome, Safari and Opera */
 }
+
+.myLink a {
+    color:#099;
+}
+
+.myLink a:hover {
+    color:#F3F;
+}

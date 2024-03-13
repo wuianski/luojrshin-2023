@@ -215,7 +215,7 @@ export default function Home() {
         {/* image */}
         <div className={`w2-3`}>
           <Image
-            priority
+            priority={true}
             className={`floatR`}
             src={renderSrc}
             width={500}
@@ -227,7 +227,7 @@ export default function Home() {
         </div>
         <div className={`mobile`}>
           <Image
-            priority
+            priority={true}
             // className={`w100`}
             fill
             src={mysrc[0]}

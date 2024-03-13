@@ -1,9 +1,8 @@
 import directus from "@/lib/directus";
 import { readItems } from "@directus/sdk";
-import Nav from "@/components/nav";
+import Nav from "@/components/Nav";
 import Box from "@mui/material/Box";
 import { courier_prime400 } from "../fonts";
-import { courier_prime700 } from "../fonts";
 import "../work.css";
 
 async function getMaterailPosts() {
