@@ -1,6 +1,6 @@
 import directus from "@/lib/directus";
 import { readItems } from "@directus/sdk";
-import Nav from "@/components/Nav";
+import Nav from "@/components/MyNav";
 import Box from "@mui/material/Box";
 import { courier_prime400 } from "../fonts";
 import "../work.css";

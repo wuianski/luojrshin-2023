@@ -55,7 +55,7 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function Nav({ spacePosts, materailPosts, imagePosts }) {
+export default function MyNav({ spacePosts, materailPosts, imagePosts }) {
   // console.log(nav)
   const [anchorElNav, setAnchorElNav] = useState(null);
   const handleOpenNavMenu = (event) => {
