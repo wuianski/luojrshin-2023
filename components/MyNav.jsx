@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+// import Link from "next/link";
+import { Link, usePathname } from "../navigation";
+// import NavigationLink from "@/NavigationLink";
+// import { usePathname } from "next/navigation";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -11,13 +13,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-
-import "../app/work.css";
+// import components, fonts and styles
+import Lang from "@/components/LangSwitcher";
+import { courier_prime400 } from "../app/[locale]/fonts";
+import "../app/[locale]/work.css";
 
 // stack Item setting
 const Item = styled(Paper)(({ theme }) => ({
   textAlign: "left",
-  color: "#000",
+  color: "unset",
   background: "none",
   boxShadow: "none",
 }));
@@ -39,23 +43,30 @@ const StyledMenu = styled((props) => (
   "& .MuiPaper-root": {
     borderRadius: 0,
     maxWidth: "calc(100% - 16px)",
-    maxHeight: "calc(100% - 76px)",
+    maxHeight: "calc(100dvh - 60px)",
     width: "100%",
-    height: "100%",
+    height: "100dvh",
     overflowY: "scroll",
-    marginTop: 0,
+    marginTop: 20,
     marginLeft: "8px",
-    "& .MuiMenu-list": {
-      //   padding: "0 0",
-    },
+    "& .MuiMenu-list": {},
     "& .MuiMenuItem-root": {
       paddingLeft: 24,
       minHeight: "unset",
+      fontFamily: "inherit",
+      fontSize: "13px",
+      lineHeight: "1.4em",
+      whiteSpace: "normal",
     },
   },
 }));
 
-export default function MyNav({ spacePosts, materailPosts, imagePosts }) {
+export default function MyNav({
+  spacePosts,
+  materailPosts,
+  imagePosts,
+  locale,
+}) {
   // console.log(nav)
   const [anchorElNav, setAnchorElNav] = useState(null);
   const handleOpenNavMenu = (event) => {
@@ -101,8 +112,17 @@ export default function MyNav({ spacePosts, materailPosts, imagePosts }) {
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: "block", md: "none" },
+                  fontSize: "13px",
                 }}
+                className={courier_prime400.className}
               >
+                <Box>
+                  <MenuItem>
+                    <Box>
+                      <Lang locale={locale} />
+                    </Box>
+                  </MenuItem>
+                </Box>
                 <Box sx={{ textTransform: "uppercase" }} pb={4}>
                   <MenuItem>
                     <Link href={`/work/about`} onClick={handleCloseNavMenu}>
@@ -175,48 +195,60 @@ export default function MyNav({ spacePosts, materailPosts, imagePosts }) {
           </Item>
           {/* mobile + desktop site name */}
           <Item>
-            <Link href={`/work`}>
-              <Box
-                sx={{
-                  textTransform: "uppercase",
-                  backgroundColor: "#fff",
-                  position: "fixed",
-                  width: { xs: "calc(100% - 72px)", md: "243px" },
-                }}
-                mt={{ xs: 1.5, md: 0 }}
-                pb={1}
-                pt={{ xs: 0.5, md: 4 }}
-              >
-                羅智信|LUO, JR-SHIN
-              </Box>
-            </Link>
-          </Item>
-          {/* desktop nav content */}
-          <Item sx={{ display: { xs: "none", md: "block" } }}>
             <Box
               sx={{
                 textTransform: "uppercase",
+                backgroundColor: "#fff",
+                position: "fixed",
+                width: { xs: "calc(100% - 72px)", md: "243px" },
               }}
-              pb={4}
-              mt={8}
+              mt={{ xs: 1.5, md: 0 }}
+              pb={1}
+              pt={{ xs: 0.5, md: 4 }}
             >
-              <Link
-                className={` ${pathname === "/work/about" ? "active" : ""}`}
-                href={`/work/about`}
+              <Stack
+                direction={{ xs: "row", md: "column" }}
+                spacing={{ xs: 0, md: 1 }}
               >
-                about
-              </Link>
+                <Item>
+                  <Link href={`/work`}>
+                    <Box sx={{ color: "#000" }}>羅智信|LUO, JR-SHIN</Box>
+                  </Link>
+                </Item>
+                <Item sx={{ display: { xs: "none", md: "block" } }}>
+                  <Box>
+                    <Lang locale={locale} />
+                  </Box>
+                </Item>
+                <Item sx={{ display: { xs: "none", md: "block" } }}>
+                  <Box sx={{ textTransform: "uppercase" }}>
+                    <Link
+                      className={` ${
+                        pathname === "/work/about" ? "active" : "notActive"
+                      }`}
+                      href={`/work/about`}
+                    >
+                      about
+                    </Link>
+                  </Box>
+                </Item>
+              </Stack>
             </Box>
-            <Box pb={4}>
+          </Item>
+          {/* desktop nav content */}
+          <Item sx={{ display: { xs: "none", md: "block" } }}>
+            <Box pb={4} mt={18}>
               <Box sx={{ textTransform: "uppercase" }} pb={2}>
                 material-based
               </Box>
               <Box pl={1}>
                 {materailPosts.map((item) => (
-                  <Box key={item.slug}>
+                  <Box key={item.slug} mb={1} mt={1}>
                     <Link
-                      className={` ${
-                        pathname === `/work/${item.slug}` ? "active" : ""
+                      className={`${
+                        pathname === `/work/${item.slug}`
+                          ? "active"
+                          : "notActive"
                       }`}
                       href={`/work/${item.slug}`}
                     >
@@ -232,10 +264,12 @@ export default function MyNav({ spacePosts, materailPosts, imagePosts }) {
               </Box>
               <Box pl={1}>
                 {spacePosts.map((item) => (
-                  <Box key={item.slug}>
+                  <Box key={item.slug} mb={1} mt={1}>
                     <Link
                       className={` ${
-                        pathname === `/work/${item.slug}` ? "active" : ""
+                        pathname === `/work/${item.slug}`
+                          ? "active"
+                          : "notActive"
                       }`}
                       href={`/work/${item.slug}`}
                     >
@@ -251,10 +285,12 @@ export default function MyNav({ spacePosts, materailPosts, imagePosts }) {
               </Box>
               <Box pl={1}>
                 {imagePosts.map((item) => (
-                  <Box key={item.slug}>
+                  <Box key={item.slug} mb={1} mt={1}>
                     <Link
                       className={` ${
-                        pathname === `/work/${item.slug}` ? "active" : ""
+                        pathname === `/work/${item.slug}`
+                          ? "active"
+                          : "notActive"
                       }`}
                       href={`/work/${item.slug}`}
                     >

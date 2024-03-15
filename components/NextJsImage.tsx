@@ -1,4 +1,5 @@
 import Image from "next/image";
+// react-photo-album
 import type { RenderPhotoProps } from "react-photo-album";
 
 export default function NextJsImage({

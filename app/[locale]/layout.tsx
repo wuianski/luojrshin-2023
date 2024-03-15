@@ -1,7 +1,8 @@
-import "./globals.css";
+import "../globals.css";
 import { Metadata } from "next";
-
-// const merriweather  = Merriweather({ subsets: ['latin'], display: 'swap', weight: ['300', '700'], });
+import { locales } from "@/i18nconfig";
+// next-intl static rendering at build time
+import { unstable_setRequestLocale } from "next-intl/server";
 
 export const metadata = {
   metadataBase: new URL("https://luojrshin.com"),
@@ -30,13 +31,20 @@ export const metadata = {
   // },
 };
 
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export default async function RootLayout({
   children,
+  params: { locale },
 }: {
   children: React.ReactNode;
+  params: { locale: string };
 }) {
+  unstable_setRequestLocale(locale);
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body>
         <main>{children}</main>
       </body>

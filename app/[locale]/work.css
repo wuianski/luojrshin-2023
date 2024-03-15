@@ -1,10 +1,17 @@
 .active {
     color:#0000ff;
 }
-
-a:hover {
+.active:hover {
+    color:#0000ff;
+}
+a {
+    text-decoration: none;
+    color:#666;
+}
+.notActive :hover{
     color:#F3F;
 }
+
 
 .myScroll {
     scrollbar-width: none;  /* Firefox */
