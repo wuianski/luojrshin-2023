@@ -12,7 +12,7 @@ export default async function Page({ params }) {
   console.log(params.locale);
   const about = await getAbout();
   return (
-    <Box p={{ xs: 3, md: 4 }} mt={{ xs: -2, md: -2 }}>
+    <Box p={{ xs: 3, md: 4 }} mt={{ xs: -2, md: -1.5 }}>
       <Box
         dangerouslySetInnerHTML={{
           __html: params.locale === "en" ? about.bio_en : about.bio_tw,

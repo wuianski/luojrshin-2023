@@ -123,10 +123,17 @@ export default function MyNav({
                     </Box>
                   </MenuItem>
                 </Box>
-                <Box sx={{ textTransform: "uppercase" }} pb={4}>
+                <Box sx={{ textTransform: "uppercase" }}>
                   <MenuItem>
                     <Link href={`/work/about`} onClick={handleCloseNavMenu}>
                       about
+                    </Link>
+                  </MenuItem>
+                </Box>
+                <Box sx={{ textTransform: "uppercase" }} pb={4}>
+                  <MenuItem>
+                    <Link href={`/work/review`} onClick={handleCloseNavMenu}>
+                      review
                     </Link>
                   </MenuItem>
                 </Box>
@@ -232,12 +239,24 @@ export default function MyNav({
                     </Link>
                   </Box>
                 </Item>
+                <Item sx={{ display: { xs: "none", md: "block" } }}>
+                  <Box sx={{ textTransform: "uppercase" }}>
+                    <Link
+                      className={` ${
+                        pathname === "/work/review" ? "active" : "notActive"
+                      }`}
+                      href={`/work/review`}
+                    >
+                      review
+                    </Link>
+                  </Box>
+                </Item>
               </Stack>
             </Box>
           </Item>
           {/* desktop nav content */}
           <Item sx={{ display: { xs: "none", md: "block" } }}>
-            <Box pb={4} mt={18}>
+            <Box pb={4} mt={21}>
               <Box sx={{ textTransform: "uppercase" }} pb={2}>
                 material-based
               </Box>
