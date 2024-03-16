@@ -50,7 +50,7 @@ async function getTwReviews() {
 export default async function Page({ params }) {
   const enReviews = await getEnReviews();
   const twReviews = await getTwReviews();
-  console.log(enReviews);
+  //   console.log(enReviews);
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: -2, md: -1 }}>
       {params.locale === "en" ? (

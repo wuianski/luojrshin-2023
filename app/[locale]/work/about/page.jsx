@@ -9,7 +9,7 @@ async function getAbout() {
 }
 
 export default async function Page({ params }) {
-  console.log(params.locale);
+  // console.log(params.locale);
   const about = await getAbout();
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: -2, md: -1.5 }}>
