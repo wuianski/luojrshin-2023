@@ -207,7 +207,7 @@ export default function MyNav({
                 textTransform: "uppercase",
                 backgroundColor: "#fff",
                 position: "fixed",
-                width: { xs: "calc(100% - 72px)", md: "243px" },
+                width: { xs: "calc(100% - 72px)", md: "286px" },
               }}
               mt={{ xs: 1.5, md: 0 }}
               pb={1}
