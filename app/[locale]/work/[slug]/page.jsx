@@ -57,13 +57,15 @@ export default async function DynamicPage({ params }) {
         <Box>
           {page.mode.mode_name === "grid" ? (
             <>
-              <div>grid</div>
+              {/* <div>grid</div> */}
               <PhotoGallery photos={page.image} />
             </>
           ) : (
             <>
-              <div>column</div>
-              <OneColumn photos={page.image} />
+              {/* <div>column</div> */}
+              <Box sx={{ width: { xs: "100%", md: "50vw" } }}>
+                <OneColumn photos={page.image} />
+              </Box>
             </>
           )}
         </Box>
