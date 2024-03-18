@@ -50,10 +50,10 @@ async function getTwReviews() {
 export default async function Page({ params }) {
   const enReviews = await getEnReviews();
   const twReviews = await getTwReviews();
-  //   console.log(enReviews);
+  console.log(params.locale);
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: -2, md: -1 }}>
-      {params.locale === "en" ? (
+      {params.locale == "en" ? (
         <Box>
           {enReviews.map((item) => (
             <Box key={item.sort}>

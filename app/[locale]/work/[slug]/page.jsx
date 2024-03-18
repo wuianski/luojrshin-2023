@@ -34,8 +34,8 @@ async function getPage(slug) {
 
 export default async function DynamicPage({ params }) {
   const page = await getPage(params.slug);
-  const image_mode = page.mode.mode_name;
-  // console.log(params.locale);
+  // const image_mode = page.mode.mode_name;
+  // console.log(image_mode);
 
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: 0, md: 0 }}>
@@ -54,14 +54,22 @@ export default async function DynamicPage({ params }) {
       </Box>
 
       <Box>
-        {image_mode == "column" ? (
-          <Box sx={{ width: { xs: "100%", md: "50vw" } }}>
-            <OneColumn photos={page.image} />
-          </Box>
-        ) : (
-          <PhotoGallery photos={page.image} />
-        )}
+        <Box>
+          {page.mode.mode_name === "grid" ? (
+            <>
+              <div>grid</div>
+              <PhotoGallery photos={page.image} />
+            </>
+          ) : (
+            <>
+              <div>column</div>
+              <OneColumn photos={page.image} />
+            </>
+          )}
+        </Box>
       </Box>
     </Box>
   );
 }
+
+//
