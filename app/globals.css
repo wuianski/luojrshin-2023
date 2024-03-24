@@ -3,6 +3,7 @@ body {
   /* height: 100vh; */
   /* overflow-y: hidden; */
   /* overflow-x: "hidden"; */
+  letter-spacing: 0.02em;
 }
 
 a {

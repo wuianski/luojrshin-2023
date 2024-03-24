@@ -4,6 +4,7 @@ import { readItems } from "@directus/sdk";
 // import components
 import Box from "@mui/material/Box";
 import Link from "next/link";
+import { noto_serif_tc400 } from "../../fonts";
 
 async function getEnReviews() {
   return directus.request(
@@ -76,7 +77,7 @@ export default async function Page({ params }) {
                 href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${item.file.filename_disk}`}
                 target="_blank"
               >
-                <Box pb={1} pt={1}>
+                <Box pb={1} pt={1} className={`${noto_serif_tc400.className}`}>
                   ◗ {item.title}
                 </Box>
               </a>

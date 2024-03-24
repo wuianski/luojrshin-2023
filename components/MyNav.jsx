@@ -17,6 +17,8 @@ import MenuItem from "@mui/material/MenuItem";
 import Lang from "@/components/LangSwitcher";
 import { courier_prime400 } from "../app/[locale]/fonts";
 import "../app/[locale]/work.css";
+import { noto_serif_tc400 } from "../app/[locale]/fonts";
+import { noto_sans_tc400 } from "../app/[locale]/fonts";
 
 // stack Item setting
 const Item = styled(Paper)(({ theme }) => ({
@@ -55,8 +57,10 @@ const StyledMenu = styled((props) => (
       minHeight: "unset",
       fontFamily: "inherit",
       fontSize: "13px",
-      lineHeight: "1.4em",
+      lineHeight: "1.1em",
       whiteSpace: "normal",
+      paddingTop: 3,
+      paddingBottom: 3,
     },
   },
 }));
@@ -126,20 +130,20 @@ export default function MyNav({
                 <Box sx={{ textTransform: "uppercase" }}>
                   <MenuItem>
                     <Link href={`/work/about`} onClick={handleCloseNavMenu}>
-                      about
+                      <Box className={courier_prime400.className}>about</Box>
                     </Link>
                   </MenuItem>
                 </Box>
                 <Box sx={{ textTransform: "uppercase" }} pb={4}>
                   <MenuItem>
                     <Link href={`/work/review`} onClick={handleCloseNavMenu}>
-                      review
+                      <Box className={courier_prime400.className}>review</Box>
                     </Link>
                   </MenuItem>
                 </Box>
 
-                <Box pb={4}>
-                  <Box sx={{ textTransform: "uppercase" }} pb={2} pl={3}>
+                <Box pb={2}>
+                  <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
                     material-based
                   </Box>
 
@@ -151,7 +155,21 @@ export default function MyNav({
                             href={`/work/${item.slug}`}
                             onClick={handleCloseNavMenu}
                           >
-                            {item.title}
+                            {locale === "en" ? (
+                              item.title
+                            ) : (
+                              <>
+                                {item.title_tw ? (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title_tw}
+                                  </Box>
+                                ) : (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title}
+                                  </Box>
+                                )}
+                              </>
+                            )}
                           </Link>
                         </MenuItem>
                       </Box>
@@ -159,8 +177,8 @@ export default function MyNav({
                   </Box>
                 </Box>
 
-                <Box pb={4}>
-                  <Box sx={{ textTransform: "uppercase" }} pb={2} pl={3}>
+                <Box pb={2}>
+                  <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
                     space-based
                   </Box>
                   <Box pl={1}>
@@ -171,15 +189,29 @@ export default function MyNav({
                             href={`/work/${item.slug}`}
                             onClick={handleCloseNavMenu}
                           >
-                            {item.title}
+                            {locale === "en" ? (
+                              item.title
+                            ) : (
+                              <>
+                                {item.title_tw ? (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title_tw}
+                                  </Box>
+                                ) : (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title}
+                                  </Box>
+                                )}
+                              </>
+                            )}
                           </Link>
                         </MenuItem>
                       </Box>
                     ))}
                   </Box>
                 </Box>
-                <Box pb={4}>
-                  <Box sx={{ textTransform: "uppercase" }} pb={2} pl={3}>
+                <Box pb={2}>
+                  <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
                     image-based
                   </Box>
                   <Box pl={1}>
@@ -190,7 +222,21 @@ export default function MyNav({
                             href={`/work/${item.slug}`}
                             onClick={handleCloseNavMenu}
                           >
-                            {item.title}
+                            {locale === "en" ? (
+                              item.title
+                            ) : (
+                              <>
+                                {item.title_tw ? (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title_tw}
+                                  </Box>
+                                ) : (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title}
+                                  </Box>
+                                )}
+                              </>
+                            )}
                           </Link>
                         </MenuItem>
                       </Box>
@@ -219,7 +265,19 @@ export default function MyNav({
               >
                 <Item>
                   <Link href={`/work`}>
-                    <Box sx={{ color: "#000" }}>羅智信|LUO, JR-SHIN</Box>
+                    <Box
+                      component="span"
+                      sx={{ color: "#000" }}
+                      className={courier_prime400.className}
+                    >
+                      羅智信
+                    </Box>
+                    <Box
+                      component="span"
+                      className={courier_prime400.className}
+                    >
+                      |LUO, JR-SHIN
+                    </Box>
                   </Link>
                 </Item>
                 <Item sx={{ display: { xs: "none", md: "block" } }}>
@@ -228,7 +286,10 @@ export default function MyNav({
                   </Box>
                 </Item>
                 <Item sx={{ display: { xs: "none", md: "block" } }}>
-                  <Box sx={{ textTransform: "uppercase" }}>
+                  <Box
+                    sx={{ textTransform: "uppercase" }}
+                    className={courier_prime400.className}
+                  >
                     <Link
                       className={` ${
                         pathname === "/work/about" ? "active" : "notActive"
@@ -240,7 +301,10 @@ export default function MyNav({
                   </Box>
                 </Item>
                 <Item sx={{ display: { xs: "none", md: "block" } }}>
-                  <Box sx={{ textTransform: "uppercase" }}>
+                  <Box
+                    sx={{ textTransform: "uppercase" }}
+                    className={courier_prime400.className}
+                  >
                     <Link
                       className={` ${
                         pathname === "/work/review" ? "active" : "notActive"
@@ -256,13 +320,17 @@ export default function MyNav({
           </Item>
           {/* desktop nav content */}
           <Item sx={{ display: { xs: "none", md: "block" } }}>
-            <Box pb={4} mt={21}>
-              <Box sx={{ textTransform: "uppercase" }} pb={2}>
+            <Box pb={2} mt={21}>
+              <Box
+                sx={{ textTransform: "uppercase" }}
+                pb={1}
+                className={courier_prime400.className}
+              >
                 material-based
               </Box>
               <Box pl={1}>
                 {materailPosts.map((item) => (
-                  <Box key={item.slug} mb={1} mt={1}>
+                  <Box key={item.slug} mb={0.8} mt={0.8}>
                     <Link
                       className={`${
                         pathname === `/work/${item.slug}`
@@ -271,19 +339,37 @@ export default function MyNav({
                       }`}
                       href={`/work/${item.slug}`}
                     >
-                      {item.title}
+                      {locale === "en" ? (
+                        item.title
+                      ) : (
+                        <>
+                          {item.title_tw ? (
+                            <Box className={courier_prime400.className}>
+                              {item.title_tw}
+                            </Box>
+                          ) : (
+                            <Box className={courier_prime400.className}>
+                              {item.title}
+                            </Box>
+                          )}
+                        </>
+                      )}
                     </Link>
                   </Box>
                 ))}
               </Box>
             </Box>
-            <Box pb={4}>
-              <Box sx={{ textTransform: "uppercase" }} pb={2}>
+            <Box pb={2}>
+              <Box
+                sx={{ textTransform: "uppercase" }}
+                pb={1}
+                className={courier_prime400.className}
+              >
                 space-based
               </Box>
               <Box pl={1}>
                 {spacePosts.map((item) => (
-                  <Box key={item.slug} mb={1} mt={1}>
+                  <Box key={item.slug} mb={0.8} mt={0.8}>
                     <Link
                       className={` ${
                         pathname === `/work/${item.slug}`
@@ -292,19 +378,37 @@ export default function MyNav({
                       }`}
                       href={`/work/${item.slug}`}
                     >
-                      {item.title}
+                      {locale === "en" ? (
+                        item.title
+                      ) : (
+                        <>
+                          {item.title_tw ? (
+                            <Box className={courier_prime400.className}>
+                              {item.title_tw}
+                            </Box>
+                          ) : (
+                            <Box className={courier_prime400.className}>
+                              {item.title}
+                            </Box>
+                          )}
+                        </>
+                      )}
                     </Link>
                   </Box>
                 ))}
               </Box>
             </Box>
-            <Box pb={4}>
-              <Box sx={{ textTransform: "uppercase" }} pb={2}>
+            <Box pb={2}>
+              <Box
+                sx={{ textTransform: "uppercase" }}
+                pb={1}
+                className={courier_prime400.className}
+              >
                 image-based
               </Box>
               <Box pl={1}>
                 {imagePosts.map((item) => (
-                  <Box key={item.slug} mb={1} mt={1}>
+                  <Box key={item.slug} mb={0.8} mt={0.8}>
                     <Link
                       className={` ${
                         pathname === `/work/${item.slug}`
@@ -313,7 +417,21 @@ export default function MyNav({
                       }`}
                       href={`/work/${item.slug}`}
                     >
-                      {item.title}
+                      {locale === "en" ? (
+                        item.title
+                      ) : (
+                        <>
+                          {item.title_tw ? (
+                            <Box className={courier_prime400.className}>
+                              {item.title_tw}
+                            </Box>
+                          ) : (
+                            <Box className={courier_prime400.className}>
+                              {item.title}
+                            </Box>
+                          )}
+                        </>
+                      )}
                     </Link>
                   </Box>
                 ))}

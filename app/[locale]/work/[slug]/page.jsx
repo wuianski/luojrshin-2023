@@ -9,6 +9,8 @@ import Image from "next/image";
 import PhotoGallery from "@/components/PhotoGallery";
 // one column image
 import OneColumn from "@/components/OneColumn";
+import { noto_serif_tc400 } from "../../fonts";
+import { courier_prime400 } from "../../fonts";
 
 async function getPage(slug) {
   try {
@@ -47,7 +49,9 @@ export default async function DynamicPage({ params }) {
           />
         ) : (
           <Box
-            className="myLink"
+            className={`${noto_serif_tc400.className} myLink`}
+            // className={`${courier_prime400.className} myLink`}
+            // className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_tw }}
           />
         )}
@@ -57,12 +61,10 @@ export default async function DynamicPage({ params }) {
         <Box>
           {page.mode.mode_name === "grid" ? (
             <>
-              {/* <div>grid</div> */}
               <PhotoGallery photos={page.image} />
             </>
           ) : (
             <>
-              {/* <div>column</div> */}
               <Box sx={{ width: { xs: "100%", md: "50vw" } }}>
                 <OneColumn photos={page.image} />
               </Box>
@@ -73,5 +75,3 @@ export default async function DynamicPage({ params }) {
     </Box>
   );
 }
-
-//

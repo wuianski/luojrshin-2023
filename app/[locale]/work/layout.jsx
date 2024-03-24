@@ -7,6 +7,8 @@ import Box from "@mui/material/Box";
 // import fonts and styles
 import { courier_prime400 } from "../fonts";
 import "../work.css";
+import { noto_sans_tc400 } from "../fonts";
+import { noto_serif_tc400 } from "../fonts";
 
 async function getMaterailPosts() {
   return directus.request(
@@ -81,8 +83,12 @@ export default async function ArtLayout({
 
   return (
     <Box
-      sx={{ overflow: "hidden", fontSize: "13px", lineHeight: "1.4em" }}
-      className={courier_prime400.className}
+      sx={{ overflow: "hidden", fontSize: "13px", lineHeight: "1.1em" }}
+      className={
+        params.locale === "en"
+          ? courier_prime400.className
+          : courier_prime400.className
+      }
     >
       {/* <Lang locale={params.locale} /> */}
       <Box

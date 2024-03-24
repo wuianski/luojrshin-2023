@@ -3,6 +3,8 @@ import directus from "@/lib/directus";
 import { readItems } from "@directus/sdk";
 // import components
 import Box from "@mui/material/Box";
+import { noto_serif_tc400 } from "../../fonts";
+import { courier_prime400 } from "../../fonts";
 
 async function getAbout() {
   return directus.request(readItems("about"));
@@ -17,6 +19,11 @@ export default async function Page({ params }) {
         dangerouslySetInnerHTML={{
           __html: params.locale === "en" ? about.bio_en : about.bio_tw,
         }}
+        className={`${
+          params.locale === `en`
+            ? `${courier_prime400.className} `
+            : `${noto_serif_tc400.className} `
+        }`}
       ></Box>
       <Box>{about.email}</Box>
       <Box>

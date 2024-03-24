@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "../navigation";
 // import conponent and styles
 import Box from "@mui/material/Box";
 import "../app/[locale]/work.css";
+import { courier_prime400 } from "../app/[locale]/fonts";
 
 export default function LangSwitcher({}) {
   const locale = useLocale();
@@ -23,12 +24,12 @@ export default function LangSwitcher({}) {
 
   return (
     <div>
-      <Box>
+      <Box className={courier_prime400.className}>
         <Box
           component="span"
           onClick={en2tw}
           sx={{ color: "#666", cursor: "pointer" }}
-          style={locale === "tw" ? { color: "#0000ff" } : { color: "#666" }}
+          // style={locale === "tw" ? { color: "#0000ff" } : { color: "#666" }}
           className={`${locale === `tw` ? "active" : "notActive"}`}
         >
           TW
@@ -40,7 +41,7 @@ export default function LangSwitcher({}) {
           component="span"
           onClick={tw2en}
           sx={{ color: "#666", cursor: "pointer" }}
-          style={locale === "en" ? { color: "#0000ff" } : { color: "#666" }}
+          // style={locale === "en" ? { color: "#0000ff" } : { color: "#666" }}
           className={`${locale === `en` ? "active" : "notActive"}`}
         >
           EN
