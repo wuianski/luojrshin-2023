@@ -267,7 +267,7 @@ export default function MyNav({
                   <Link href={`/work`}>
                     <Box
                       component="span"
-                      sx={{ color: "#000" }}
+                      // sx={{ color: "#000" }}
                       className={courier_prime400.className}
                     >
                       羅智信

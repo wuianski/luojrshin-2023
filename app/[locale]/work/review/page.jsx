@@ -5,30 +5,34 @@ import { readItems } from "@directus/sdk";
 import Box from "@mui/material/Box";
 import Link from "next/link";
 import { noto_serif_tc400 } from "../../fonts";
+import { courier_prime400 } from "../../fonts";
 
 async function getEnReviews() {
-  return directus.request(
-    readItems("reviews", {
-      sort: ["-sort"],
-      fields: ["*", "*.*", { file: ["*", "*.*"] }],
-      filter: {
-        _and: [
-          {
-            status: {
-              _eq: "published",
+  try {
+    return await directus.request(
+      readItems("reviews", {
+        sort: ["-sort"],
+        fields: ["*", "*.*", { file: ["*", "*.*"] }],
+        filter: {
+          _and: [
+            {
+              status: {
+                _eq: "published",
+              },
+              lang: {
+                _eq: "1",
+              },
             },
-            lang: {
-              _eq: "1",
-            },
-          },
-        ],
-      },
-    })
-  );
+          ],
+        },
+      })
+    );
+  } catch (error) {
+    notFound();
+  }
 }
-
 async function getTwReviews() {
-  return directus.request(
+  return await directus.request(
     readItems("reviews", {
       sort: ["-sort"],
       fields: ["*", "*.*", { file: ["*", "*.*"] }],
@@ -47,13 +51,18 @@ async function getTwReviews() {
     })
   );
 }
+// export const revalidate = 10;
 
-export default async function Page({ params }) {
+export default async function Reivew({ params }) {
   const enReviews = await getEnReviews();
   const twReviews = await getTwReviews();
   //   console.log(params.locale);
   return (
-    <Box p={{ xs: 3, md: 4 }} mt={{ xs: -2, md: -1 }}>
+    <Box
+      p={{ xs: 3, md: 4 }}
+      mt={{ xs: -2, md: -1 }}
+      sx={{ fontFamily: "Courier Prime", fontSize: "14px" }}
+    >
       {params.locale === "en" ? (
         <Box>
           {enReviews.map((item) => (
@@ -77,7 +86,7 @@ export default async function Page({ params }) {
                 href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${item.file.filename_disk}`}
                 target="_blank"
               >
-                <Box pb={1} pt={1} className={`${noto_serif_tc400.className}`}>
+                <Box pb={1} pt={1} className={`${courier_prime400.className}`}>
                   ◗ {item.title}
                 </Box>
               </a>

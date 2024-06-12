@@ -33,6 +33,7 @@ async function getPage(slug) {
     notFound();
   }
 }
+// export const revalidate = 10;
 
 export default async function DynamicPage({ params }) {
   const page = await getPage(params.slug);
@@ -49,10 +50,11 @@ export default async function DynamicPage({ params }) {
           />
         ) : (
           <Box
-            className={`${noto_serif_tc400.className} myLink`}
+            className={`${courier_prime400.className} myLink`}
             // className={`${courier_prime400.className} myLink`}
             // className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_tw }}
+            sx={{ fontFamily: "Courier Prime", fontSize: "14px" }}
           />
         )}
       </Box>

@@ -1,5 +1,6 @@
 // fetch data from directus
 import directus from "@/lib/directus";
+import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 // import components
 import Box from "@mui/material/Box";
@@ -7,10 +8,14 @@ import { noto_serif_tc400 } from "../../fonts";
 import { courier_prime400 } from "../../fonts";
 
 async function getAbout() {
-  return directus.request(readItems("about"));
+  try {
+    return await directus.request(readItems("about"));
+  } catch (error) {
+    notFound();
+  }
 }
 
-export default async function Page({ params }) {
+export default async function About({ params }) {
   // console.log(params.locale);
   const about = await getAbout();
   return (
@@ -22,8 +27,9 @@ export default async function Page({ params }) {
         className={`${
           params.locale === `en`
             ? `${courier_prime400.className} `
-            : `${noto_serif_tc400.className} `
+            : `${courier_prime400.className} `
         }`}
+        sx={{ fontFamily: "Courier Prime", fontSize: "14px" }}
       ></Box>
       <Box>{about.email}</Box>
       <Box>

@@ -1,5 +1,6 @@
 // fetch data from directus
 import directus from "@/lib/directus";
+import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 // import components
 import Nav from "@/components/MyNav";
@@ -11,69 +12,86 @@ import { noto_sans_tc400 } from "../fonts";
 import { noto_serif_tc400 } from "../fonts";
 
 async function getMaterailPosts() {
-  return directus.request(
-    readItems("posts", {
-      // fields: ["slug", "title"],
-      sort: ["-sort"],
-      filter: {
-        _and: [
-          {
-            status: {
-              _eq: "published",
+  try {
+    const materailPosts = await directus.request(
+      // return directus.request(
+      readItems("posts", {
+        // fields: ["slug", "title"],
+        sort: ["-sort"],
+        filter: {
+          _and: [
+            {
+              status: {
+                _eq: "published",
+              },
+              category: {
+                _eq: "3",
+              },
             },
-            category: {
-              _eq: "3",
-            },
-          },
-        ],
-      },
-    })
-  );
+          ],
+        },
+      })
+    );
+    return materailPosts;
+  } catch (error) {
+    notFound();
+  }
 }
-
 async function getSpacePosts() {
-  return directus.request(
-    readItems("posts", {
-      // fields: ["slug", "title"],
-      sort: ["-sort"],
-      filter: {
-        _and: [
-          {
-            status: {
-              _eq: "published",
+  try {
+    const spacePosts = await directus.request(
+      // return directus.request(
+      readItems("posts", {
+        // fields: ["slug", "title"],
+        sort: ["-sort"],
+        filter: {
+          _and: [
+            {
+              status: {
+                _eq: "published",
+              },
+              category: {
+                _eq: "2",
+              },
             },
-            category: {
-              _eq: "2",
-            },
-          },
-        ],
-      },
-    })
-  );
+          ],
+        },
+      })
+    );
+    return spacePosts;
+  } catch (error) {
+    notFound();
+  }
 }
-
 async function getImagePosts() {
-  return directus.request(
-    readItems("posts", {
-      // fields: ["slug", "title"],
-      sort: ["-sort"],
-      filter: {
-        _and: [
-          {
-            status: {
-              _eq: "published",
+  try {
+    const imagePosts = await directus.request(
+      // return directus.request(
+      readItems("posts", {
+        // fields: ["slug", "title"],
+        sort: ["-sort"],
+        filter: {
+          _and: [
+            {
+              status: {
+                _eq: "published",
+              },
+              category: {
+                _eq: "1",
+              },
             },
-            category: {
-              _eq: "1",
-            },
-          },
-        ],
-      },
-    })
-  );
+          ],
+        },
+      })
+    );
+    return imagePosts;
+  } catch (error) {
+    notFound();
+  }
 }
+// export const revalidate = 10;
 
-export default async function ArtLayout({
+export default async function WorkLayout({
   children, // will be a page or nested layout
   params,
 }) {

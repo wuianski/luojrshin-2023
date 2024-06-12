@@ -57,6 +57,7 @@ export default function PhotoGallery({ photos }) {
         // enable optional lightbox plugins
         // plugins={[]}
         render={{ slide: LightBoxNextJsImage }}
+        styles={{ container: { backgroundColor: "rgba(0, 0, 0, 0)" } }}
       />
     </>
   );
