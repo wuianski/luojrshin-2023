@@ -51,20 +51,21 @@ export default async function Page({ params }) {
                 />
               )}
             </Box>
-
-            <Box sx={{ width: { xs: "100%", md: "50vw" } }}>
-              <Image
-                priority={true}
-                src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
-                quality={100}
-                width={500}
-                height={500}
-                alt="Picture of the news"
-                style={{ objectFit: "contain", objectPosition: "left" }}
-                sizes="50vw"
-                placeholder={"blurDataURL" in news.image ? "blur" : undefined}
-              />
-            </Box>
+            {news.image ? (
+              <Box sx={{ width: { xs: "100%", md: "50vw" } }}>
+                <Image
+                  priority={true}
+                  src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
+                  quality={100}
+                  width={500}
+                  height={500}
+                  alt="Picture of the news"
+                  style={{ objectFit: "contain", objectPosition: "left" }}
+                  sizes="50vw"
+                  placeholder={"blurDataURL" in news.image ? "blur" : undefined}
+                />
+              </Box>
+            ) : null}
           </Box>
         ))}
       </Box>
