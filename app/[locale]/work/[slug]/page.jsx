@@ -54,7 +54,11 @@ export default async function DynamicPage({ params }) {
             // className={`${courier_prime400.className} myLink`}
             // className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_tw }}
-            sx={{ fontFamily: "Courier Prime", fontSize: "14px" }}
+            sx={{
+              fontFamily: "Courier Prime",
+              fontSize: "14px",
+              lineHeight: "1.5em",
+            }}
           />
         )}
       </Box>
@@ -67,7 +71,7 @@ export default async function DynamicPage({ params }) {
             </>
           ) : (
             <>
-              <Box sx={{ width: { xs: "100%", md: "50vw" } }}>
+              <Box sx={{ width: { xs: "100%", md: "30vw" } }}>
                 <OneColumn photos={page.image} />
               </Box>
             </>

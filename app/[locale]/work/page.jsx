@@ -56,8 +56,8 @@ export default async function Page({ params }) {
               <Box
                 sx={{
                   position: "relative",
-                  width: { xs: "80dvw", md: "50dvw" },
-                  height: { xs: "20dvh", md: "30dvh" },
+                  width: { xs: "100%", md: "50dvw" },
+                  height: { xs: "30dvh", md: "40dvh" },
                 }}
                 mb={6}
               >
