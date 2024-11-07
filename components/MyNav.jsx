@@ -44,19 +44,21 @@ const StyledMenu = styled((props) => (
 ))(({ theme }) => ({
   "& .MuiPaper-root": {
     borderRadius: 0,
-    maxWidth: "calc(100% - 16px)",
+    maxWidth: "calc(100% - 0px)",
     maxHeight: "calc(100dvh - 60px)",
     width: "100%",
     height: "100dvh",
     overflowY: "scroll",
-    marginTop: 20,
+    // marginTop: 20,
     marginLeft: "8px",
+    left: "0 !important",
+    top: "60px !important",
     "& .MuiMenu-list": {},
     "& .MuiMenuItem-root": {
-      paddingLeft: 24,
+      // paddingLeft: 24,
       minHeight: "unset",
       fontFamily: "inherit",
-      fontSize: "13px",
+      fontSize: { xs: "17px", md: "13px" },
       lineHeight: "1.1em",
       whiteSpace: "normal",
       paddingTop: 3,
@@ -104,7 +106,8 @@ export default function MyNav({
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                // color="inherit"
+                sx={{ color: "#00ff00" }}
               >
                 <MenuIcon />
               </IconButton>
@@ -116,7 +119,7 @@ export default function MyNav({
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: "block", md: "none" },
-                  fontSize: "13px",
+                  fontSize: "17px",
                 }}
                 className={courier_prime400.className}
               >
@@ -130,14 +133,19 @@ export default function MyNav({
                 <Box sx={{ textTransform: "uppercase" }}>
                   <MenuItem>
                     <Link href={`/work/about`} onClick={handleCloseNavMenu}>
-                      <Box className={courier_prime400.className}>about</Box>
+                      <Box className={courier_prime400.className}>
+                        {locale === "en" ? "about" : "關於"}
+                      </Box>
                     </Link>
                   </MenuItem>
                 </Box>
                 <Box sx={{ textTransform: "uppercase" }} pb={4}>
                   <MenuItem>
                     <Link href={`/work/review`} onClick={handleCloseNavMenu}>
-                      <Box className={courier_prime400.className}>review</Box>
+                      <Box className={courier_prime400.className}>
+                        {" "}
+                        {locale === "en" ? "review" : "報導與評論"}
+                      </Box>
                     </Link>
                   </MenuItem>
                 </Box>
@@ -257,7 +265,7 @@ export default function MyNav({
               }}
               mt={{ xs: 1.5, md: 0 }}
               pb={1}
-              pt={{ xs: 0.5, md: 4 }}
+              pt={{ xs: 0.8, md: 4 }}
             >
               <Stack
                 direction={{ xs: "row", md: "column" }}
@@ -267,14 +275,15 @@ export default function MyNav({
                   <Link href={`/work`}>
                     <Box
                       component="span"
-                      // sx={{ color: "#000" }}
                       className={courier_prime400.className}
+                      sx={{ fontSize: { xs: "19px", md: "13px" } }}
                     >
                       羅智信
                     </Box>
                     <Box
                       component="span"
                       className={courier_prime400.className}
+                      sx={{ fontSize: { xs: "19px", md: "13px" } }}
                     >
                       |LUO, JR-SHIN
                     </Box>
@@ -296,7 +305,7 @@ export default function MyNav({
                       }`}
                       href={`/work/about`}
                     >
-                      about
+                      {locale === "en" ? "about" : "關於"}
                     </Link>
                   </Box>
                 </Item>
@@ -311,7 +320,7 @@ export default function MyNav({
                       }`}
                       href={`/work/review`}
                     >
-                      review
+                      {locale === "en" ? "review" : "報導與評論"}
                     </Link>
                   </Box>
                 </Item>

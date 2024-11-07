@@ -61,7 +61,7 @@ export default async function Reivew({ params }) {
     <Box
       p={{ xs: 3, md: 4 }}
       mt={{ xs: -2, md: -1 }}
-      sx={{ fontFamily: "Courier Prime", fontSize: "14px" }}
+      sx={{ fontFamily: "Courier Prime", fontSize: { xs: "18px", md: "14px" } }}
     >
       {params.locale === "en" ? (
         <Box>
@@ -71,7 +71,7 @@ export default async function Reivew({ params }) {
                 href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${item.file.filename_disk}`}
                 target="_blank"
               >
-                <Box pb={1} pt={1}>
+                <Box pb={1} pt={1} sx={{ lineHeight: "1.1em" }}>
                   ◗ {item.title}
                 </Box>
               </a>
@@ -86,7 +86,12 @@ export default async function Reivew({ params }) {
                 href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${item.file.filename_disk}`}
                 target="_blank"
               >
-                <Box pb={1} pt={1} className={`${courier_prime400.className}`}>
+                <Box
+                  pb={1}
+                  pt={1}
+                  className={`${courier_prime400.className}`}
+                  sx={{ lineHeight: "1.5em" }}
+                >
                   ◗ {item.title}
                 </Box>
               </a>

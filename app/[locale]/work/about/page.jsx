@@ -19,7 +19,11 @@ export default async function About({ params }) {
   // console.log(params.locale);
   const about = await getAbout();
   return (
-    <Box p={{ xs: 3, md: 4 }} mt={{ xs: -2, md: -1.5 }}>
+    <Box
+      p={{ xs: 3, md: 4 }}
+      mt={{ xs: -2, md: -1.5 }}
+      sx={{ fontSize: { xs: "18px", md: "14px" } }}
+    >
       <Box
         dangerouslySetInnerHTML={{
           __html: params.locale === "en" ? about.bio_en : about.bio_tw,
@@ -29,10 +33,14 @@ export default async function About({ params }) {
             ? `${courier_prime400.className} `
             : `${courier_prime400.className} `
         }`}
-        sx={{ fontFamily: "Courier Prime", fontSize: "14px" }}
+        sx={{
+          fontFamily: "Courier Prime",
+          // fontSize: { xs: "18px", md: "14px" },
+          lineHeight: params.locale === "en" ? "1.1em" : "1.5em",
+        }}
       ></Box>
-      <Box>{about.email}</Box>
-      <Box>
+      <Box pb={1}>{about.email}</Box>
+      <Box pb={1}>
         <a target="_blank" href={about.instagram}>
           {about.instagram}
         </a>
@@ -43,7 +51,7 @@ export default async function About({ params }) {
             target="_blank"
             href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}/${about.cv_en}`}
           >
-            CV
+            CV PDF
           </a>
         </Box>
       ) : (
@@ -52,7 +60,7 @@ export default async function About({ params }) {
             target="_blank"
             href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}/${about.cv_tw}`}
           >
-            簡歷
+            簡歷 PDF
           </a>
         </Box>
       )}

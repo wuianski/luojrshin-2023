@@ -47,6 +47,7 @@ export default async function DynamicPage({ params }) {
           <Box
             className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_en }}
+            sx={{ fontSize: { xs: "18px", md: "14px" }, lineHeight: "1.1em" }}
           />
         ) : (
           <Box
@@ -56,7 +57,7 @@ export default async function DynamicPage({ params }) {
             dangerouslySetInnerHTML={{ __html: page.content_tw }}
             sx={{
               fontFamily: "Courier Prime",
-              fontSize: "14px",
+              fontSize: { xs: "18px", md: "14px" },
               lineHeight: "1.5em",
             }}
           />

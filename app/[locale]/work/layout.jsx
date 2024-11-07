@@ -111,7 +111,7 @@ export default async function WorkLayout({
       {/* <Lang locale={params.locale} /> */}
       <Box
         sx={{
-          width: { xs: "calc(100% - 16px)", md: "350px" },
+          width: { xs: "calc(100% - 0px)", md: "350px" },
           // height: { xs: "60px", md: "100vh" },
           backgroundColor: "#fff",
           position: "fixed",
@@ -130,9 +130,10 @@ export default async function WorkLayout({
       </Box>
       <Box
         sx={{
-          width: { xs: "100vw", md: "calc(100vw - 350px)" },
-          marginLeft: { xs: "0px", md: "350px" },
-          marginTop: { xs: "60px", md: "0" },
+          width: { xs: "calc(100vw - 0px)", md: "calc(100vw - 350px)" },
+          marginLeft: { xs: "auto", md: "350px" },
+          marginRight: { xs: "auto", md: "0" },
+          paddingTop: { xs: "60px", md: "0" },
           backgroundColor: "#fff",
           height: "calc(100vh - 16px)",
           overflowY: "scroll",

@@ -32,7 +32,7 @@ export default function LangSwitcher({}) {
           // style={locale === "tw" ? { color: "#0000ff" } : { color: "#666" }}
           className={`${locale === `tw` ? "active" : "notActive"}`}
         >
-          TW
+          中文
         </Box>
         <Box component="span" sx={{ color: "#666" }}>
           /
