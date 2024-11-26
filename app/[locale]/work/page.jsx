@@ -61,67 +61,139 @@ export default async function Page({ params }) {
             </Box>
 
             {/* if news.link is not empty, then add link to the image, else only show the image */}
-            {news.link ? (
-              <Box
-                sx={{
-                  position: "relative",
-                  width: { xs: "100%", md: "38vw", lg: "33vw" },
-                  // height: { xs: "30dvh", md: "90dvh" },
-                  // margin: "0 auto",
-                }}
-                pb={6}
-              >
-                <a href={news.link} target="_blank">
-                  <Image
-                    priority={true}
-                    src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
-                    quality={100}
-                    width={0}
-                    height={0}
-                    // fill={true}
-                    alt="Picture of the news"
-                    style={{
-                      // objectFit: "contain",
-                      // objectPosition: "left top"
-                      width: "100%",
-                      height: "auto",
+            {params.locale === "tw" ? (
+              <>
+                {news.link ? (
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: { xs: "100%", md: "38vw", lg: "33vw" },
+                      // height: { xs: "30dvh", md: "90dvh" },
+                      // margin: "0 auto",
                     }}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
-                    placeholder={
-                      "blurDataURL" in news.image ? "blur" : undefined
-                    }
-                  />
-                </a>
-              </Box>
-            ) : news.image ? (
-              <Box
-                sx={{
-                  position: "relative",
-                  width: { xs: "100%", md: "38vw", lg: "33vw" },
-                  // height: { xs: "30dvh", md: "90dvh" },
-                  // margin: "0 auto",
-                }}
-                pb={6}
-              >
-                <Image
-                  priority={true}
-                  src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
-                  quality={100}
-                  width={0}
-                  height={0}
-                  // fill={true}
-                  alt="Picture of the news"
-                  style={{
-                    // objectFit: "contain",
-                    // objectPosition: "left top"
-                    width: "100%",
-                    height: "auto",
-                  }}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
-                  placeholder={"blurDataURL" in news.image ? "blur" : undefined}
-                />
-              </Box>
-            ) : null}
+                    pb={6}
+                  >
+                    <a href={news.link} target="_blank">
+                      <Image
+                        priority={true}
+                        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
+                        quality={100}
+                        width={0}
+                        height={0}
+                        // fill={true}
+                        alt="Picture of the news"
+                        style={{
+                          // objectFit: "contain",
+                          // objectPosition: "left top"
+                          width: "100%",
+                          height: "auto",
+                        }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
+                        placeholder={
+                          "blurDataURL" in news.image ? "blur" : undefined
+                        }
+                      />
+                    </a>
+                  </Box>
+                ) : news.image ? (
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: { xs: "100%", md: "38vw", lg: "33vw" },
+                      // height: { xs: "30dvh", md: "90dvh" },
+                      // margin: "0 auto",
+                    }}
+                    pb={6}
+                  >
+                    <Image
+                      priority={true}
+                      src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
+                      quality={100}
+                      width={0}
+                      height={0}
+                      // fill={true}
+                      alt="Picture of the news"
+                      style={{
+                        // objectFit: "contain",
+                        // objectPosition: "left top"
+                        width: "100%",
+                        height: "auto",
+                      }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
+                      placeholder={
+                        "blurDataURL" in news.image ? "blur" : undefined
+                      }
+                    />
+                  </Box>
+                ) : null}
+              </>
+            ) : (
+              <>
+                {news.link_en ? (
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: { xs: "100%", md: "38vw", lg: "33vw" },
+                      // height: { xs: "30dvh", md: "90dvh" },
+                      // margin: "0 auto",
+                    }}
+                    pb={6}
+                  >
+                    <a href={news.link_en} target="_blank">
+                      <Image
+                        priority={true}
+                        src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
+                        quality={100}
+                        width={0}
+                        height={0}
+                        // fill={true}
+                        alt="Picture of the news"
+                        style={{
+                          // objectFit: "contain",
+                          // objectPosition: "left top"
+                          width: "100%",
+                          height: "auto",
+                        }}
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
+                        placeholder={
+                          "blurDataURL" in news.image ? "blur" : undefined
+                        }
+                      />
+                    </a>
+                  </Box>
+                ) : news.image ? (
+                  <Box
+                    sx={{
+                      position: "relative",
+                      width: { xs: "100%", md: "38vw", lg: "33vw" },
+                      // height: { xs: "30dvh", md: "90dvh" },
+                      // margin: "0 auto",
+                    }}
+                    pb={6}
+                  >
+                    <Image
+                      priority={true}
+                      src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
+                      quality={100}
+                      width={0}
+                      height={0}
+                      // fill={true}
+                      alt="Picture of the news"
+                      style={{
+                        // objectFit: "contain",
+                        // objectPosition: "left top"
+                        width: "100%",
+                        height: "auto",
+                      }}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
+                      placeholder={
+                        "blurDataURL" in news.image ? "blur" : undefined
+                      }
+                    />
+                  </Box>
+                ) : null}
+              </>
+            )}
           </Box>
         ))}
       </Box>
