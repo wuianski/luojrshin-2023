@@ -107,9 +107,9 @@ export default function MyNav({
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
                 // color="inherit"
-                sx={{ color: "#00ff00" }}
+                sx={{ color: "#00ff00", marginTop: "-4px" }}
               >
-                <MenuIcon />
+                <MenuIcon sx={{ fontSize: 32 }} />
               </IconButton>
               <StyledMenu
                 id="menu-appbar"

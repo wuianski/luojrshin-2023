@@ -65,7 +65,7 @@ export default async function Page({ params }) {
               <Box
                 sx={{
                   position: "relative",
-                  width: { xs: "100%", md: "50vw" },
+                  width: { xs: "100%", md: "38vw", lg: "33vw" },
                   // height: { xs: "30dvh", md: "90dvh" },
                   // margin: "0 auto",
                 }}
@@ -97,7 +97,7 @@ export default async function Page({ params }) {
               <Box
                 sx={{
                   position: "relative",
-                  width: { xs: "100%", md: "50vw" },
+                  width: { xs: "100%", md: "38vw", lg: "33vw" },
                   // height: { xs: "30dvh", md: "90dvh" },
                   // margin: "0 auto",
                 }}
