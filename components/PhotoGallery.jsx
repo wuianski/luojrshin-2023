@@ -9,8 +9,11 @@ import Lightbox from "yet-another-react-lightbox";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 import LightBoxNextJsImage from "@/components/LightBoxNextJsImage";
+import Captions from "yet-another-react-lightbox/plugins/captions";
+import "yet-another-react-lightbox/plugins/captions.css";
 
 export default function PhotoGallery({ photos }) {
+  // console.log(photos);
   const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
   const imageSizes = [16, 32, 48, 64, 96, 128, 256, 384];
   const deviceSizes = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
@@ -31,6 +34,9 @@ export default function PhotoGallery({ photos }) {
 
     //   };
     // }),
+
+    // title: `${photo.directus_files_id.title}`,
+    description: photo.directus_files_id.description,
 
     /* with zoom plugin in Lightbox */
     srcSet: [...imageSizes, ...deviceSizes]
@@ -73,7 +79,7 @@ export default function PhotoGallery({ photos }) {
         index={index}
         close={() => setIndex(-1)}
         // enable optional lightbox plugins
-        plugins={[Zoom]}
+        plugins={[Zoom, Captions]}
         render={{ slide: LightBoxNextJsImage }}
         styles={{
           container: { backgroundColor: "rgba(0, 0, 0, 0)" },

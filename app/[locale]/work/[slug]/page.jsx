@@ -16,7 +16,7 @@ async function getPage(slug) {
   try {
     const page = await directus.request(
       readItem("posts", slug, {
-        fields: ["*", "*.*", { image: ["*.*"] }],
+        fields: ["*", "*.*", { image: ["*", "*.*"] }],
         filter: {
           _and: [
             {
@@ -39,6 +39,7 @@ export default async function DynamicPage({ params }) {
   const page = await getPage(params.slug);
   // const image_mode = page.mode.mode_name;
   // console.log(image_mode);
+  // console.log(page);
 
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: 0, md: 0 }}>

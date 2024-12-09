@@ -73,7 +73,7 @@ export default async function Page({ params }) {
                     }}
                     pb={6}
                   >
-                    <a href={news.link} target="_blank">
+                    <a href={news.link}>
                       <Image
                         priority={true}
                         src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
@@ -139,7 +139,7 @@ export default async function Page({ params }) {
                     }}
                     pb={6}
                   >
-                    <a href={news.link_en} target="_blank">
+                    <a href={news.link_en}>
                       <Image
                         priority={true}
                         src={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${news.image.filename_disk}`}
