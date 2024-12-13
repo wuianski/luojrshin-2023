@@ -16,7 +16,7 @@ async function getPage(slug) {
   try {
     const page = await directus.request(
       readItem("posts", slug, {
-        fields: ["*", "*.*", { image: ["*", "*.*"] }],
+        fields: ["*", "*.*", { image: ["*.*"] }],
         filter: {
           _and: [
             {
@@ -35,8 +35,8 @@ async function getPage(slug) {
 }
 // export const revalidate = 10;
 
-export default async function DynamicPage({ params }) {
-  const page = await getPage(params.slug);
+export default async function Page({ params }) {
+  const page = await getPage((await params).slug);
   // const image_mode = page.mode.mode_name;
   // console.log(image_mode);
   // console.log(page);
@@ -44,7 +44,7 @@ export default async function DynamicPage({ params }) {
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: 0, md: 0 }}>
       <Box mb={2}>
-        {params.locale === "en" ? (
+        {(await params).locale === "en" ? (
           <Box
             className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_en }}
