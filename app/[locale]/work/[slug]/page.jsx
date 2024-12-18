@@ -16,7 +16,11 @@ async function getPage(slug) {
   try {
     const page = await directus.request(
       readItem("posts", slug, {
-        fields: ["*", "*.*", { image: ["*.*"] }],
+        fields: [
+          "*",
+          "*.*",
+          { image: ["*.*"], content_imgs: ["*.*", "*.*.*"] },
+        ],
         filter: {
           _and: [
             {
@@ -39,7 +43,6 @@ export default async function Page({ params }) {
   const page = await getPage((await params).slug);
   // const image_mode = page.mode.mode_name;
   // console.log(image_mode);
-  // console.log(page);
 
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: 0, md: 0 }}>
@@ -53,8 +56,6 @@ export default async function Page({ params }) {
         ) : (
           <Box
             className={`${courier_prime400.className} myLink`}
-            // className={`${courier_prime400.className} myLink`}
-            // className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_tw }}
             sx={{
               fontFamily: "Courier Prime",
@@ -69,12 +70,14 @@ export default async function Page({ params }) {
         <Box>
           {page.mode.mode_name === "grid" ? (
             <>
-              <PhotoGallery photos={page.image} />
+              {/* <PhotoGallery photos={page.image} /> */}
+              <PhotoGallery photos={page.content_imgs} params={params} />
             </>
           ) : (
             <>
               <Box sx={{ width: { xs: "100%", md: "30vw" } }}>
-                <OneColumn photos={page.image} />
+                {/* <OneColumn photos={page.image} /> */}
+                <OneColumn photos={page.content_imgs} params={params} />
               </Box>
             </>
           )}

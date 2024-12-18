@@ -85,6 +85,10 @@ a:hover {
   color:#00ff00 !important;
   filter:none !important;
 }
+.yarl__button:disabled {
+  color:#00ff00 !important;
+  opacity: 0.5 !important;
+}
 
 .yarl__slide_captions_container {
   width: 130px !important;
@@ -162,7 +166,7 @@ a:hover {
     padding: 0 !important;
   }
   .yarl__slide_wrapper {
-    display: inline !important;
+    display: table-caption !important;
   }
 }
 

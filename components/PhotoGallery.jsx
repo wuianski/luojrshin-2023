@@ -12,46 +12,38 @@ import LightBoxNextJsImage from "@/components/LightBoxNextJsImage";
 import Captions from "yet-another-react-lightbox/plugins/captions";
 import "yet-another-react-lightbox/plugins/captions.css";
 
-export default function PhotoGallery({ photos }) {
-  // console.log(photos);
+export default function PhotoGallery({ photos, params }) {
+  // console.log(params);
   const breakpoints = [1080, 640, 384, 256, 128, 96, 64, 48];
   const imageSizes = [16, 32, 48, 64, 96, 128, 256, 384];
   const deviceSizes = [640, 750, 828, 1080, 1200, 1920, 2048, 3840];
   const myphotos = photos.map((photo) => ({
-    src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${photo.directus_files_id.filename_disk}`,
-    width: photo.directus_files_id.width,
-    height: photo.directus_files_id.height,
-    /* without zoom plugin in Lightbox */
-    // srcSet: breakpoints.map((breakpoint) => {
-    //   const height = Math.round(
-    //     (photo.directus_files_id.height / photo.directus_files_id.width) *
-    //       breakpoint
-    //   );
-    //   return {
-    //     src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${photo.directus_files_id.filename_disk}`,
-    //     width: breakpoints,
-    //     height,
-
-    //   };
-    // }),
-
-    // title: `${photo.directus_files_id.title}`,
-    description: photo.directus_files_id.description,
+    // src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${photo.directus_files_id.filename_disk}`,
+    // width: photo.directus_files_id.width,
+    // height: photo.directus_files_id.height,
+    // description: photo.directus_files_id.description,
+    src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${photo.item.image.filename_disk}`,
+    width: photo.item.image.width,
+    height: photo.item.image.height,
+    description:
+      params.locale === "tw" ? photo.item.caption_tw : photo.item.caption_en,
 
     /* with zoom plugin in Lightbox */
     srcSet: [...imageSizes, ...deviceSizes]
-      .filter((size) => size <= photo.directus_files_id.width)
+      .filter((size) => size <= photo.item.image.width)
       .map((size) => ({
-        src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${photo.directus_files_id.filename_disk}`,
+        src: `${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${photo.item.image.filename_disk}`,
         width: size,
         height: Math.round(
-          (photo.directus_files_id.height / photo.directus_files_id.width) *
-            size
+          (photo.item.image.height / photo.item.image.width) * size
         ),
       })),
   }));
 
   const [index, setIndex] = useState(-1);
+  const [renderPrev, setRenderPrev] = useState(true);
+  const [renderNext, setRenderNext] = useState(true);
+  const [finite, setFinite] = useState(true);
 
   return (
     <>
@@ -80,10 +72,15 @@ export default function PhotoGallery({ photos }) {
         close={() => setIndex(-1)}
         // enable optional lightbox plugins
         plugins={[Zoom, Captions]}
-        render={{ slide: LightBoxNextJsImage }}
+        render={{
+          slide: LightBoxNextJsImage,
+          buttonPrev: renderPrev ? undefined : () => null,
+          buttonNext: renderNext ? undefined : () => null,
+        }}
         styles={{
           container: { backgroundColor: "rgba(0, 0, 0, 0)" },
         }}
+        carousel={{ finite }}
       />
     </>
   );
