@@ -42,7 +42,7 @@ export default function NextJsImage({ slide, offset, rect }) {
     <div style={{ position: "relative", width, height }}>
       <Image
         fill
-        priority={true}
+        // priority={true}
         alt="work image"
         src={slide}
         quality={100}

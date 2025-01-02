@@ -8,6 +8,10 @@ export const metadata = {
   metadataBase: new URL("https://luojrshin.com"),
   title: "Luo Jr-Shin",
   description: "Sorry, there is some construction going on here...",
+  openGraph: {
+    title: "Luo Jr-Shin",
+    description: "Luo Jr-Shin Official Website",
+  },
   // openGraph: {
   //   title: "Luo Jr-Shin",
   //   description: "Sorry, there is some construction going on here...",

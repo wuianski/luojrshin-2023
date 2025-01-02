@@ -9,8 +9,8 @@ import Image from "next/image";
 import PhotoGallery from "@/components/PhotoGallery";
 // one column image
 import OneColumn from "@/components/OneColumn";
-import { noto_serif_tc400 } from "../../fonts";
-import { courier_prime400 } from "../../fonts";
+import { noto_serif_tc400 } from "@/app/[locale]/fonts";
+import { courier_prime400 } from "@/app/[locale]/fonts";
 
 async function getPage(slug) {
   try {

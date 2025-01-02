@@ -10,7 +10,7 @@ export default function NextJsImage({
   return (
     <div style={{ ...wrapperStyle, position: "relative" }}>
       <Image
-        priority={true}
+        // priority={true}
         fill
         src={photo}
         quality={100}

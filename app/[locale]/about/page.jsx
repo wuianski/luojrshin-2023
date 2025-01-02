@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 // import components
 import Box from "@mui/material/Box";
-import { noto_serif_tc400 } from "../../fonts";
-import { courier_prime400 } from "../../fonts";
+// import { noto_serif_tc400 } from "../../fonts";
+import { courier_prime400 } from "@/app/[locale]/fonts";
 
 async function getAbout() {
   try {
@@ -23,6 +23,7 @@ export default async function About({ params }) {
       p={{ xs: 3, md: 4 }}
       mt={{ xs: -2, md: -1.5 }}
       sx={{ fontSize: { xs: "18px", md: "14px" } }}
+      className={courier_prime400.className}
     >
       <Box
         dangerouslySetInnerHTML={{
@@ -34,7 +35,7 @@ export default async function About({ params }) {
             : `${courier_prime400.className} `
         }`}
         sx={{
-          fontFamily: "Courier Prime",
+          // fontFamily: "Courier Prime",
           // fontSize: { xs: "18px", md: "14px" },
           lineHeight: params.locale === "en" ? "1.1em" : "1.5em",
         }}

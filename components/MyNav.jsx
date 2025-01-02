@@ -15,10 +15,10 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 // import components, fonts and styles
 import Lang from "@/components/LangSwitcher";
-import { courier_prime400 } from "../app/[locale]/fonts";
-import "../app/[locale]/work.css";
-import { noto_serif_tc400 } from "../app/[locale]/fonts";
-import { noto_sans_tc400 } from "../app/[locale]/fonts";
+import { courier_prime400 } from "@/app/[locale]/fonts";
+import "@/app/[locale]/work.css";
+// import { noto_serif_tc400 } from "../app/[locale]/fonts";
+// import { noto_sans_tc400 } from "../app/[locale]/fonts";
 
 // stack Item setting
 const Item = styled(Paper)(({ theme }) => ({
@@ -85,7 +85,7 @@ export default function MyNav({
   const pathname = usePathname();
 
   return (
-    <Box>
+    <Box className={courier_prime400.className}>
       <nav>
         <Stack
           direction={{ xs: "row", md: "column" }}
@@ -132,7 +132,7 @@ export default function MyNav({
                 </Box>
                 <Box sx={{ textTransform: "uppercase" }}>
                   <MenuItem>
-                    <Link href={`/work/about`} onClick={handleCloseNavMenu}>
+                    <Link href={`/about`} onClick={handleCloseNavMenu}>
                       <Box className={courier_prime400.className}>
                         {locale === "en" ? "about" : "關於"}
                       </Box>
@@ -141,7 +141,7 @@ export default function MyNav({
                 </Box>
                 <Box sx={{ textTransform: "uppercase" }} pb={4}>
                   <MenuItem>
-                    <Link href={`/work/review`} onClick={handleCloseNavMenu}>
+                    <Link href={`/review`} onClick={handleCloseNavMenu}>
                       <Box className={courier_prime400.className}>
                         {" "}
                         {locale === "en" ? "review" : "報導與評論"}
@@ -160,7 +160,7 @@ export default function MyNav({
                       <Box key={item.slug}>
                         <MenuItem>
                           <Link
-                            href={`/work/${item.slug}`}
+                            href={`/${item.slug}`}
                             onClick={handleCloseNavMenu}
                           >
                             {locale === "en" ? (
@@ -194,7 +194,7 @@ export default function MyNav({
                       <Box key={item.slug}>
                         <MenuItem>
                           <Link
-                            href={`/work/${item.slug}`}
+                            href={`/${item.slug}`}
                             onClick={handleCloseNavMenu}
                           >
                             {locale === "en" ? (
@@ -227,7 +227,7 @@ export default function MyNav({
                       <Box key={item.slug}>
                         <MenuItem>
                           <Link
-                            href={`/work/${item.slug}`}
+                            href={`/${item.slug}`}
                             onClick={handleCloseNavMenu}
                           >
                             {locale === "en" ? (
@@ -272,7 +272,7 @@ export default function MyNav({
                 spacing={{ xs: 0, md: 1 }}
               >
                 <Item>
-                  <Link href={`/work`}>
+                  <Link href={`/`}>
                     <Box
                       component="span"
                       className={courier_prime400.className}
@@ -301,9 +301,9 @@ export default function MyNav({
                   >
                     <Link
                       className={` ${
-                        pathname === "/work/about" ? "active" : "notActive"
+                        pathname === "/about" ? "active" : "notActive"
                       }`}
-                      href={`/work/about`}
+                      href={`/about`}
                     >
                       {locale === "en" ? "about" : "關於"}
                     </Link>
@@ -316,9 +316,9 @@ export default function MyNav({
                   >
                     <Link
                       className={` ${
-                        pathname === "/work/review" ? "active" : "notActive"
+                        pathname === "/review" ? "active" : "notActive"
                       }`}
-                      href={`/work/review`}
+                      href={`/review`}
                     >
                       {locale === "en" ? "review" : "報導與評論"}
                     </Link>
@@ -342,11 +342,9 @@ export default function MyNav({
                   <Box key={item.slug} mb={0.8} mt={0.8}>
                     <Link
                       className={`${
-                        pathname === `/work/${item.slug}`
-                          ? "active"
-                          : "notActive"
+                        pathname === `/${item.slug}` ? "active" : "notActive"
                       }`}
-                      href={`/work/${item.slug}`}
+                      href={`/${item.slug}`}
                     >
                       {locale === "en" ? (
                         item.title
@@ -381,11 +379,9 @@ export default function MyNav({
                   <Box key={item.slug} mb={0.8} mt={0.8}>
                     <Link
                       className={` ${
-                        pathname === `/work/${item.slug}`
-                          ? "active"
-                          : "notActive"
+                        pathname === `/${item.slug}` ? "active" : "notActive"
                       }`}
-                      href={`/work/${item.slug}`}
+                      href={`/${item.slug}`}
                     >
                       {locale === "en" ? (
                         item.title
@@ -420,11 +416,9 @@ export default function MyNav({
                   <Box key={item.slug} mb={0.8} mt={0.8}>
                     <Link
                       className={` ${
-                        pathname === `/work/${item.slug}`
-                          ? "active"
-                          : "notActive"
+                        pathname === `/${item.slug}` ? "active" : "notActive"
                       }`}
-                      href={`/work/${item.slug}`}
+                      href={`/${item.slug}`}
                     >
                       {locale === "en" ? (
                         item.title

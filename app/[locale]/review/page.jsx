@@ -3,9 +3,7 @@ import directus from "@/lib/directus";
 import { readItems } from "@directus/sdk";
 // import components
 import Box from "@mui/material/Box";
-import Link from "next/link";
-import { noto_serif_tc400 } from "../../fonts";
-import { courier_prime400 } from "../../fonts";
+import { courier_prime400 } from "@/app/[locale]/fonts";
 
 async function getEnReviews() {
   try {
@@ -32,24 +30,28 @@ async function getEnReviews() {
   }
 }
 async function getTwReviews() {
-  return await directus.request(
-    readItems("reviews", {
-      sort: ["-sort"],
-      fields: ["*", "*.*", { file: ["*", "*.*"] }],
-      filter: {
-        _and: [
-          {
-            status: {
-              _eq: "published",
+  try {
+    return await directus.request(
+      readItems("reviews", {
+        sort: ["-sort"],
+        fields: ["*", "*.*", { file: ["*", "*.*"] }],
+        filter: {
+          _and: [
+            {
+              status: {
+                _eq: "published",
+              },
+              lang: {
+                _eq: "2",
+              },
             },
-            lang: {
-              _eq: "2",
-            },
-          },
-        ],
-      },
-    })
-  );
+          ],
+        },
+      })
+    );
+  } catch (error) {
+    notFound();
+  }
 }
 // export const revalidate = 10;
 
@@ -71,7 +73,15 @@ export default async function Reivew({ params }) {
                 href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}${item.file.filename_disk}`}
                 target="_blank"
               >
-                <Box pb={1} pt={1} sx={{ lineHeight: "1.1em" }}>
+                <Box
+                  pb={1}
+                  pt={1}
+                  sx={{
+                    lineHeight: "1.1em",
+                    // fontFamily: "Courier Prime !important",
+                  }}
+                  className={`${courier_prime400.className}`}
+                >
                   ◗ {item.title}
                 </Box>
               </a>
