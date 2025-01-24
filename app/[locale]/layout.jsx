@@ -147,7 +147,7 @@ export default async function RootLayout({
               backgroundColor: "#fff",
               position: "fixed",
               zIndex: "99",
-              height: { xs: "unset", md: "calc(100vh - 16px)" },
+              height: { xs: "unset", md: "calc(100dvh - 16px)" },
               overflowY: "scroll",
             }}
             className="myScroll"
@@ -166,7 +166,7 @@ export default async function RootLayout({
               marginRight: { xs: "auto", md: "0" },
               paddingTop: { xs: "60px", md: "0" },
               backgroundColor: "#fff",
-              height: "calc(100vh - 16px)",
+              height: "calc(100dvh - 60px)",
               overflowY: "scroll",
             }}
           >
