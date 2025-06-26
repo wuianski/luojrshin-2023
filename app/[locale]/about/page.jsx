@@ -15,6 +15,18 @@ async function getAbout() {
   }
 }
 
+export async function generateMetadata() {
+  const about = await getAbout();
+  if (!about) {
+    notFound();
+  }
+
+  return {
+    title: `關於 About | 羅智信 Luo Jr-Shin`,
+    description: `${about.bio_tw} ${about.bio_en}`,
+  };
+}
+
 export default async function About({ params }) {
   // console.log(params.locale);
   const about = await getAbout();

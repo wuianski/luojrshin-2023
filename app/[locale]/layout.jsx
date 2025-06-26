@@ -90,11 +90,11 @@ async function getImagePosts() {
 }
 
 export const metadata = {
-  title: "Luo Jr-Shin",
-  description: "Luo Jr-Shin Official Website",
+  title: `羅智信 Luo Jr-Shin`,
+  description: "羅智信的個人網站 Luo Jr-Shin's personal website",
   openGraph: {
-    title: "Luo Jr-Shin",
-    description: "Luo Jr-Shin Official Website",
+    title: "羅智信 Luo Jr-Shin",
+    description: "羅智信的個人網站 Luo Jr-Shin's personal website",
     // images: [
     //   {
     //     url: "https://dev.luojrshin.com/Index_Desktop.jpg",
@@ -112,6 +112,9 @@ export const metadata = {
   // icons: {
   //   icon: "/icon/icon.png",
   // },
+  verification: {
+    google: "Am4DRE8IzhcXtExBFV94D4doYkjCEE3e5_Huy0ZifOc",
+  },
 };
 
 export async function generateStaticParams() {

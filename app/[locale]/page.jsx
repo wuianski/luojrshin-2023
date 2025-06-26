@@ -29,8 +29,13 @@ async function getNews() {
   }
 }
 
+export const metadata = {
+  title: `首頁 Home | 羅智信 Luo Jr-Shin`,
+  description: "羅智信的個人網站 Luo Jr-Shin's personal website",
+};
+
 export default async function Home({ params }) {
-  console.log(params.locale);
+  // console.log(params.locale);
   const news = await getNews();
 
   return (

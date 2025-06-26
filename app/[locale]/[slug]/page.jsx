@@ -39,6 +39,24 @@ async function getPage(slug) {
 }
 // export const revalidate = 10;
 
+export async function generateMetadata({ params }) {
+  const page = await getPage((await params).slug);
+  if (!page) {
+    notFound();
+  }
+
+  return {
+    title: `${page.title_tw.replace(/<[^>]+>/g, "")} ${page.title.replace(
+      /<[^>]+>/g,
+      ""
+    )}  | 羅智信 Luo Jr-Shin`,
+    description: `${page.content_tw.replace(
+      /<[^>]+>/g,
+      ""
+    )} ${page.content_en.replace(/<[^>]+>/g, "")}`,
+  };
+}
+
 export default async function Page({ params }) {
   const page = await getPage((await params).slug);
   // const image_mode = page.mode.mode_name;

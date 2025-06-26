@@ -55,6 +55,11 @@ async function getTwReviews() {
 }
 // export const revalidate = 10;
 
+export const metadata = {
+  title: `報導與評論 Reivew | 羅智信 Luo Jr-Shin`,
+  description: "羅智信作品的報導與評論。 Luo Jr-Shin's works reviews.",
+};
+
 export default async function Reivew({ params }) {
   const enReviews = await getEnReviews();
   const twReviews = await getTwReviews();
