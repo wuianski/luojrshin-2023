@@ -1,15 +1,27 @@
 // fetch data from directus
 import directus from "@/lib/directus";
-import { notFound } from "next/navigation";
+// import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 // import components
 import Box from "@mui/material/Box";
 // import { noto_serif_tc400 } from "../../fonts";
 import { courier_prime400 } from "@/app/[locale]/fonts";
 
+// async function getAbout() {
+//   try {
+//     return await directus.request(readItems("about"));
+//   } catch (error) {
+//     notFound();
+//   }
+// }
+
 async function getAbout() {
   try {
-    return await directus.request(readItems("about"));
+    return await directus.request(
+      readItems("about", {
+        fields: ["*", { file: ["*"] }],
+      })
+    );
   } catch (error) {
     notFound();
   }
