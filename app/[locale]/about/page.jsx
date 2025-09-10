@@ -19,7 +19,7 @@ async function getAbout() {
   try {
     return await directus.request(
       readItems("about", {
-        fields: ["*", { file: ["*"] }],
+        fields: ["*", "*.*", { file: ["*", "*.*"] }],
       })
     );
   } catch (error) {
@@ -42,6 +42,7 @@ export async function generateMetadata() {
 export default async function About({ params }) {
   // console.log(params.locale);
   const about = await getAbout();
+  // console.log(about.cv_en.filename_disk);
   return (
     <Box
       p={{ xs: 3, md: 4 }}
@@ -74,7 +75,7 @@ export default async function About({ params }) {
         <Box>
           <a
             target="_blank"
-            href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}/${about.cv_en}`}
+            href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}/${about.cv_en.filename_disk}`}
           >
             CV PDF
           </a>
@@ -83,7 +84,7 @@ export default async function About({ params }) {
         <Box>
           <a
             target="_blank"
-            href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}/${about.cv_tw}`}
+            href={`${process.env.DIRECTUS_IMAGE_DOMAIN_DO}/${about.cv_tw.filename_disk}`}
           >
             簡歷 PDF
           </a>
