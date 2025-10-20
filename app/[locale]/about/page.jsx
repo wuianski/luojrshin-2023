@@ -19,7 +19,7 @@ async function getAbout() {
   try {
     return await directus.request(
       readItems("about", {
-        fields: ["*", "*.*", { file: ["*", "*.*"] }],
+        fields: ["*", "*.*", { cv_tw: ["*", "*.*"], cv_en: ["*", "*.*"] }],
       })
     );
   } catch (error) {
