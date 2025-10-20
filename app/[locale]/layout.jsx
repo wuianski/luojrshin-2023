@@ -18,6 +18,11 @@ async function getMaterailPosts() {
     const materailPosts = await directus.request(
       readItems("posts", {
         // fields: ["slug", "title"],
+        fields: [
+          "*",
+          "*.*",
+          { image: ["*.*"], content_imgs: ["*.*", "*.*.*"] },
+        ],
         sort: ["-sort"],
         filter: {
           _and: [
@@ -43,6 +48,11 @@ async function getSpacePosts() {
     const spacePosts = await directus.request(
       readItems("posts", {
         // fields: ["slug", "title"],
+        fields: [
+          "*",
+          "*.*",
+          { image: ["*.*"], content_imgs: ["*.*", "*.*.*"] },
+        ],
         sort: ["-sort"],
         filter: {
           _and: [
@@ -68,6 +78,11 @@ async function getImagePosts() {
     const imagePosts = await directus.request(
       readItems("posts", {
         // fields: ["slug", "title"],
+        fields: [
+          "*",
+          "*.*",
+          { image: ["*.*"], content_imgs: ["*.*", "*.*.*"] },
+        ],
         sort: ["-sort"],
         filter: {
           _and: [
