@@ -11,7 +11,7 @@ async function getNews() {
   try {
     return await directus.request(
       readItems("news", {
-        fields: ["*", "*.*", { image: ["*.*"] }],
+        fields: ["*", "*.*", { image: ["*", "*.*"] }],
         sort: ["-sort"],
         filter: {
           _and: [
