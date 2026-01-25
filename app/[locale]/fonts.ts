@@ -8,29 +8,24 @@ export const courier_prime400 = Courier_Prime({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
-  adjustFontFallback: false,
 });
 export const merriweather300 = Merriweather({
   subsets: ["latin"],
   weight: "300",
   display: "swap",
-  adjustFontFallback: false,
 });
 export const merriweather700 = Merriweather({
   subsets: ["latin"],
   weight: "700",
   display: "swap",
-  adjustFontFallback: false,
 });
 export const noto_serif_tc400 = Noto_Serif_TC({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
-  adjustFontFallback: false,
 });
 export const noto_sans_tc400 = Noto_Sans_TC({
   subsets: ["latin"],
   weight: "400",
   display: "swap",
-  adjustFontFallback: false,
 });
