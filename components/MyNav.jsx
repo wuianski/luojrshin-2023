@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -15,7 +15,7 @@ import Lang from "@/components/LangSwitcher";
 import { courier_prime400 } from "@/lib/fonts";
 import "@/app/[locale]/work.css";
 
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { usePathname, useRouter, Link } from "@/i18n/navigation";
 
 // stack Item setting
 const Item = styled(Paper)(({ theme }) => ({

@@ -28,13 +28,13 @@ export default function NextJsImage({ slide, offset, rect }) {
 
   const width = !cover
     ? Math.round(
-        Math.min(rect.width, (rect.height / slide.height) * slide.width)
+        Math.min(rect.width, (rect.height / slide.height) * slide.width),
       )
     : rect.width;
 
   const height = !cover
     ? Math.round(
-        Math.min(rect.height, (rect.width / slide.width) * slide.height)
+        Math.min(rect.height, (rect.width / slide.width) * slide.height),
       )
     : rect.height;
 
@@ -45,7 +45,7 @@ export default function NextJsImage({ slide, offset, rect }) {
         // priority={true}
         alt="work image"
         src={slide}
-        quality={100}
+        // quality={100}
         // loading="eager"
         draggable={false}
         placeholder={slide.blurDataURL ? "blur" : undefined}
