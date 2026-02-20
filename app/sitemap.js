@@ -1,5 +1,5 @@
 // fetch data from directus
-import directus from "lib/directus";
+import directus from "@/lib/directus";
 import { notFound } from "next/navigation";
 import { readItems } from "@directus/sdk";
 

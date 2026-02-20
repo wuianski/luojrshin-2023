@@ -5,7 +5,7 @@ import { readItems } from "@directus/sdk";
 // import components
 import Box from "@mui/material/Box";
 // import { noto_serif_tc400 } from "../../fonts";
-import { courier_prime400 } from "@/app/[locale]/fonts";
+import { courier_prime400 } from "@/lib/fonts";
 
 // async function getAbout() {
 //   try {
@@ -41,6 +41,7 @@ export async function generateMetadata() {
 
 export default async function About({ params }) {
   // console.log(params.locale);
+  const{ locale } = await params;
   const about = await getAbout();
   // console.log(about.cv_en.filename_disk);
   return (
@@ -52,17 +53,17 @@ export default async function About({ params }) {
     >
       <Box
         dangerouslySetInnerHTML={{
-          __html: params.locale === "en" ? about.bio_en : about.bio_tw,
+          __html: locale === "en" ? about.bio_en : about.bio_tw,
         }}
         className={`${
-          params.locale === `en`
+          locale === `en`
             ? `${courier_prime400.className} `
             : `${courier_prime400.className} `
         }`}
         sx={{
           // fontFamily: "Courier Prime",
           // fontSize: { xs: "18px", md: "14px" },
-          lineHeight: params.locale === "en" ? "1.1em" : "1.5em",
+          lineHeight: locale === "en" ? "1.1em" : "1.5em",
         }}
       ></Box>
       <Box pb={1}>{about.email}</Box>
@@ -71,7 +72,7 @@ export default async function About({ params }) {
           {about.instagram}
         </a>
       </Box>
-      {params.locale === "en" ? (
+      {locale === "en" ? (
         <Box>
           <a
             target="_blank"

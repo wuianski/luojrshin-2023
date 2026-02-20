@@ -1,0 +1,8 @@
+import {createNavigation} from 'next-intl/navigation';
+import {routing} from './routing';
+ 
+// export const locales = ['en', 'tw'] as const;
+// export const localePrefix = 'always'; // Default
+ 
+export const {Link, redirect, usePathname, useRouter, getPathname} =
+  createNavigation(routing);

@@ -1,10 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-// import Link from "next/link";
-import { Link, usePathname } from "../navigation";
-// import NavigationLink from "@/NavigationLink";
-// import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
@@ -13,12 +10,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-// import components, fonts and styles
+/* import components, fonts and styles */
 import Lang from "@/components/LangSwitcher";
-import { courier_prime400 } from "@/app/[locale]/fonts";
+import { courier_prime400 } from "@/lib/fonts";
 import "@/app/[locale]/work.css";
-// import { noto_serif_tc400 } from "../app/[locale]/fonts";
-// import { noto_sans_tc400 } from "../app/[locale]/fonts";
+
+import { usePathname, useRouter } from "@/i18n/navigation";
 
 // stack Item setting
 const Item = styled(Paper)(({ theme }) => ({
@@ -83,366 +80,421 @@ export default function MyNav({
   };
 
   const pathname = usePathname();
+  const router = useRouter();
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
-    <Box className={courier_prime400.className}>
-      <nav>
-        <Stack
-          direction={{ xs: "row", md: "column" }}
-          spacing={{ xs: 0, md: 0 }}
-          pt={{ xs: 4, md: 0 }}
-          pl={4}
-          pr={4}
-          pb={"4px"}
-          mt={{ xs: -3, md: 0 }}
-          ml={{ xs: -3, md: 0 }}
+    <>
+      {isClient ? (
+        <Box
+          sx={{
+            width: { xs: "calc(100% - 0px)", md: "350px" },
+            backgroundColor: "#fff",
+            position: "fixed",
+            zIndex: "99",
+            height: { xs: "unset", md: "calc(100dvh - 16px)" },
+            overflowY: "scroll",
+          }}
+          className="myScroll"
         >
-          {/* mobile nav content */}
-          <Item>
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="menu-appbar"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                // color="inherit"
-                sx={{ color: "#00ff00", marginTop: "-4px" }}
-              >
-                <MenuIcon sx={{ fontSize: 32 }} />
-              </IconButton>
-              <StyledMenu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                keepMounted
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                  fontSize: "17px",
-                }}
-                className={courier_prime400.className}
-              >
-                <Box>
-                  <MenuItem>
-                    <Box>
-                      <Lang locale={locale} />
-                    </Box>
-                  </MenuItem>
-                </Box>
-                <Box sx={{ textTransform: "uppercase" }}>
-                  <MenuItem>
-                    <Link href={`/about`} onClick={handleCloseNavMenu}>
-                      <Box className={courier_prime400.className}>
-                        {locale === "en" ? "about" : "關於"}
-                      </Box>
-                    </Link>
-                  </MenuItem>
-                </Box>
-                <Box sx={{ textTransform: "uppercase" }} pb={4}>
-                  <MenuItem>
-                    <Link href={`/review`} onClick={handleCloseNavMenu}>
-                      <Box className={courier_prime400.className}>
-                        {" "}
-                        {locale === "en" ? "review" : "報導與評論"}
-                      </Box>
-                    </Link>
-                  </MenuItem>
-                </Box>
-
-                <Box pb={2}>
-                  <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
-                    material-based
-                  </Box>
-
-                  <Box pl={1}>
-                    {materailPosts.map((item) => (
-                      <Box key={item.slug}>
-                        <MenuItem>
-                          <Link
-                            href={`/${item.slug}`}
-                            onClick={handleCloseNavMenu}
-                          >
-                            {locale === "en" ? (
-                              item.title
-                            ) : (
-                              <>
-                                {item.title_tw ? (
-                                  <Box className={courier_prime400.className}>
-                                    {item.title_tw}
-                                  </Box>
-                                ) : (
-                                  <Box className={courier_prime400.className}>
-                                    {item.title}
-                                  </Box>
-                                )}
-                              </>
-                            )}
-                          </Link>
-                        </MenuItem>
-                      </Box>
-                    ))}
-                  </Box>
-                </Box>
-
-                <Box pb={2}>
-                  <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
-                    space-based
-                  </Box>
-                  <Box pl={1}>
-                    {spacePosts.map((item) => (
-                      <Box key={item.slug}>
-                        <MenuItem>
-                          <Link
-                            href={`/${item.slug}`}
-                            onClick={handleCloseNavMenu}
-                          >
-                            {locale === "en" ? (
-                              item.title
-                            ) : (
-                              <>
-                                {item.title_tw ? (
-                                  <Box className={courier_prime400.className}>
-                                    {item.title_tw}
-                                  </Box>
-                                ) : (
-                                  <Box className={courier_prime400.className}>
-                                    {item.title}
-                                  </Box>
-                                )}
-                              </>
-                            )}
-                          </Link>
-                        </MenuItem>
-                      </Box>
-                    ))}
-                  </Box>
-                </Box>
-                <Box pb={2}>
-                  <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
-                    image-based
-                  </Box>
-                  <Box pl={1}>
-                    {imagePosts.map((item) => (
-                      <Box key={item.slug}>
-                        <MenuItem>
-                          <Link
-                            href={`/${item.slug}`}
-                            onClick={handleCloseNavMenu}
-                          >
-                            {locale === "en" ? (
-                              item.title
-                            ) : (
-                              <>
-                                {item.title_tw ? (
-                                  <Box className={courier_prime400.className}>
-                                    {item.title_tw}
-                                  </Box>
-                                ) : (
-                                  <Box className={courier_prime400.className}>
-                                    {item.title}
-                                  </Box>
-                                )}
-                              </>
-                            )}
-                          </Link>
-                        </MenuItem>
-                      </Box>
-                    ))}
-                  </Box>
-                </Box>
-              </StyledMenu>
-            </Box>
-          </Item>
-          {/* mobile + desktop site name */}
-          <Item>
-            <Box
-              sx={{
-                textTransform: "uppercase",
-                backgroundColor: "#fff",
-                position: "fixed",
-                width: { xs: "calc(100% - 72px)", md: "286px" },
-              }}
-              mt={{ xs: 1.5, md: 0 }}
-              pb={1}
-              pt={{ xs: 0.8, md: 4 }}
-            >
+          <Box
+            sx={{ overflow: "hidden", fontSize: "13px", lineHeight: "1.1em" }}
+            className={
+              locale === "en"
+                ? courier_prime400.className
+                : courier_prime400.className
+            }
+          >
+            <nav>
               <Stack
                 direction={{ xs: "row", md: "column" }}
-                spacing={{ xs: 0, md: 1 }}
+                spacing={{ xs: 0, md: 0 }}
+                pt={{ xs: 4, md: 0 }}
+                pl={4}
+                pr={4}
+                pb={"4px"}
+                mt={{ xs: -3, md: 0 }}
+                ml={{ xs: -3, md: 0 }}
               >
+                {/* mobile nav content */}
                 <Item>
-                  <Link href={`/`}>
-                    <Box
-                      component="span"
-                      className={courier_prime400.className}
-                      sx={{ fontSize: { xs: "19px", md: "13px" } }}
+                  <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                    <IconButton
+                      size="large"
+                      aria-label="menu-appbar"
+                      aria-controls="menu-appbar"
+                      aria-haspopup="true"
+                      onClick={handleOpenNavMenu}
+                      // color="inherit"
+                      sx={{ color: "#00ff00", marginTop: "-4px" }}
                     >
-                      羅智信
-                    </Box>
-                    <Box
-                      component="span"
+                      <MenuIcon sx={{ fontSize: 32 }} />
+                    </IconButton>
+                    <StyledMenu
+                      id="menu-appbar"
+                      anchorEl={anchorElNav}
+                      keepMounted
+                      open={Boolean(anchorElNav)}
+                      onClose={handleCloseNavMenu}
+                      sx={{
+                        display: { xs: "block", md: "none" },
+                        fontSize: "17px",
+                      }}
                       className={courier_prime400.className}
-                      sx={{ fontSize: { xs: "19px", md: "13px" } }}
                     >
-                      |LUO, JR-SHIN
-                    </Box>
-                  </Link>
-                </Item>
-                <Item sx={{ display: { xs: "none", md: "block" } }}>
-                  <Box>
-                    <Lang locale={locale} />
+                      <Box>
+                        <MenuItem>
+                          <Box>
+                            <Lang
+                              locale={locale}
+                              pathname={pathname}
+                              router={router}
+                            />
+                          </Box>
+                        </MenuItem>
+                      </Box>
+                      <Box sx={{ textTransform: "uppercase" }}>
+                        <MenuItem>
+                          <Link href={`/about`} onClick={handleCloseNavMenu}>
+                            <Box className={courier_prime400.className}>
+                              {locale === "en" ? "about" : "關於"}
+                            </Box>
+                          </Link>
+                        </MenuItem>
+                      </Box>
+                      <Box sx={{ textTransform: "uppercase" }} pb={4}>
+                        <MenuItem>
+                          <Link href={`/review`} onClick={handleCloseNavMenu}>
+                            <Box className={courier_prime400.className}>
+                              {locale === "en" ? "review" : "報導與評論"}
+                            </Box>
+                          </Link>
+                        </MenuItem>
+                      </Box>
+
+                      <Box pb={2}>
+                        <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
+                          material-based
+                        </Box>
+
+                        <Box pl={1}>
+                          {materailPosts.map((item) => (
+                            <Box key={item.slug}>
+                              <MenuItem>
+                                <Link
+                                  href={`/${item.slug}`}
+                                  onClick={handleCloseNavMenu}
+                                >
+                                  {locale === "en" ? (
+                                    item.title
+                                  ) : (
+                                    <>
+                                      {item.title_tw ? (
+                                        <Box
+                                          className={courier_prime400.className}
+                                        >
+                                          {item.title_tw}
+                                        </Box>
+                                      ) : (
+                                        <Box
+                                          className={courier_prime400.className}
+                                        >
+                                          {item.title}
+                                        </Box>
+                                      )}
+                                    </>
+                                  )}
+                                </Link>
+                              </MenuItem>
+                            </Box>
+                          ))}
+                        </Box>
+                      </Box>
+
+                      <Box pb={2}>
+                        <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
+                          space-based
+                        </Box>
+                        <Box pl={1}>
+                          {spacePosts.map((item) => (
+                            <Box key={item.slug}>
+                              <MenuItem>
+                                <Link
+                                  href={`/${item.slug}`}
+                                  onClick={handleCloseNavMenu}
+                                >
+                                  {locale === "en" ? (
+                                    item.title
+                                  ) : (
+                                    <>
+                                      {item.title_tw ? (
+                                        <Box
+                                          className={courier_prime400.className}
+                                        >
+                                          {item.title_tw}
+                                        </Box>
+                                      ) : (
+                                        <Box
+                                          className={courier_prime400.className}
+                                        >
+                                          {item.title}
+                                        </Box>
+                                      )}
+                                    </>
+                                  )}
+                                </Link>
+                              </MenuItem>
+                            </Box>
+                          ))}
+                        </Box>
+                      </Box>
+                      <Box pb={2}>
+                        <Box sx={{ textTransform: "uppercase" }} pb={1} pl={3}>
+                          image-based
+                        </Box>
+                        <Box pl={1}>
+                          {imagePosts.map((item) => (
+                            <Box key={item.slug}>
+                              <MenuItem>
+                                <Link
+                                  href={`/${item.slug}`}
+                                  onClick={handleCloseNavMenu}
+                                >
+                                  {locale === "en" ? (
+                                    item.title
+                                  ) : (
+                                    <>
+                                      {item.title_tw ? (
+                                        <Box
+                                          className={courier_prime400.className}
+                                        >
+                                          {item.title_tw}
+                                        </Box>
+                                      ) : (
+                                        <Box
+                                          className={courier_prime400.className}
+                                        >
+                                          {item.title}
+                                        </Box>
+                                      )}
+                                    </>
+                                  )}
+                                </Link>
+                              </MenuItem>
+                            </Box>
+                          ))}
+                        </Box>
+                      </Box>
+                    </StyledMenu>
                   </Box>
                 </Item>
-                <Item sx={{ display: { xs: "none", md: "block" } }}>
+                {/* mobile + desktop site name */}
+                <Item>
                   <Box
-                    sx={{ textTransform: "uppercase" }}
-                    className={courier_prime400.className}
+                    sx={{
+                      textTransform: "uppercase",
+                      backgroundColor: "#fff",
+                      position: "fixed",
+                      width: { xs: "calc(100% - 72px)", md: "286px" },
+                    }}
+                    mt={{ xs: 1.5, md: 0 }}
+                    pb={1}
+                    pt={{ xs: 0.8, md: 4 }}
                   >
-                    <Link
-                      className={` ${
-                        pathname === "/about" ? "active" : "notActive"
-                      }`}
-                      href={`/about`}
+                    <Stack
+                      direction={{ xs: "row", md: "column" }}
+                      spacing={{ xs: 0, md: 1 }}
                     >
-                      {locale === "en" ? "about" : "關於"}
-                    </Link>
+                      <Item>
+                        <Link href={`/`}>
+                          <Box
+                            component="span"
+                            className={courier_prime400.className}
+                            sx={{ fontSize: { xs: "19px", md: "13px" } }}
+                          >
+                            羅智信
+                          </Box>
+                          <Box
+                            component="span"
+                            className={courier_prime400.className}
+                            sx={{ fontSize: { xs: "19px", md: "13px" } }}
+                          >
+                            |LUO, JR-SHIN
+                          </Box>
+                        </Link>
+                      </Item>
+                      <Item sx={{ display: { xs: "none", md: "block" } }}>
+                        <Box>
+                          <Lang
+                            locale={locale}
+                            pathname={pathname}
+                            router={router}
+                          />
+                        </Box>
+                      </Item>
+                      <Item sx={{ display: { xs: "none", md: "block" } }}>
+                        <Box
+                          sx={{ textTransform: "uppercase" }}
+                          className={courier_prime400.className}
+                        >
+                          <Link
+                            className={` ${
+                              pathname === "/about" ? "active" : "notActive"
+                            }`}
+                            href={`/about`}
+                          >
+                            {locale === "en" ? "about" : "關於"}
+                          </Link>
+                        </Box>
+                      </Item>
+                      <Item sx={{ display: { xs: "none", md: "block" } }}>
+                        <Box
+                          sx={{ textTransform: "uppercase" }}
+                          className={courier_prime400.className}
+                        >
+                          <Link
+                            className={` ${
+                              pathname === "/review" ? "active" : "notActive"
+                            }`}
+                            href={`/review`}
+                          >
+                            {locale === "en" ? "review" : "報導與評論"}
+                          </Link>
+                        </Box>
+                      </Item>
+                    </Stack>
                   </Box>
                 </Item>
+                {/* desktop nav content */}
                 <Item sx={{ display: { xs: "none", md: "block" } }}>
-                  <Box
-                    sx={{ textTransform: "uppercase" }}
-                    className={courier_prime400.className}
-                  >
-                    <Link
-                      className={` ${
-                        pathname === "/review" ? "active" : "notActive"
-                      }`}
-                      href={`/review`}
+                  <Box pb={2} mt={21}>
+                    <Box
+                      sx={{ textTransform: "uppercase" }}
+                      pb={1}
+                      className={courier_prime400.className}
                     >
-                      {locale === "en" ? "review" : "報導與評論"}
-                    </Link>
+                      material-based
+                    </Box>
+                    <Box pl={1}>
+                      {materailPosts.map((item) => (
+                        <Box key={item.slug} mb={0.8} mt={0.8}>
+                          <Link
+                            className={`${
+                              pathname === `/${item.slug}`
+                                ? "active"
+                                : "notActive"
+                            }`}
+                            href={`/${item.slug}`}
+                          >
+                            {locale === "en" ? (
+                              item.title
+                            ) : (
+                              <>
+                                {item.title_tw ? (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title_tw}
+                                  </Box>
+                                ) : (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title}
+                                  </Box>
+                                )}
+                              </>
+                            )}
+                          </Link>
+                        </Box>
+                      ))}
+                    </Box>
+                  </Box>
+                  <Box pb={2}>
+                    <Box
+                      sx={{ textTransform: "uppercase" }}
+                      pb={1}
+                      className={courier_prime400.className}
+                    >
+                      space-based
+                    </Box>
+                    <Box pl={1}>
+                      {spacePosts.map((item) => (
+                        <Box key={item.slug} mb={0.8} mt={0.8}>
+                          <Link
+                            className={` ${
+                              pathname === `/${item.slug}`
+                                ? "active"
+                                : "notActive"
+                            }`}
+                            href={`/${item.slug}`}
+                          >
+                            {locale === "en" ? (
+                              item.title
+                            ) : (
+                              <>
+                                {item.title_tw ? (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title_tw}
+                                  </Box>
+                                ) : (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title}
+                                  </Box>
+                                )}
+                              </>
+                            )}
+                          </Link>
+                        </Box>
+                      ))}
+                    </Box>
+                  </Box>
+                  <Box pb={2}>
+                    <Box
+                      sx={{ textTransform: "uppercase" }}
+                      pb={1}
+                      className={courier_prime400.className}
+                    >
+                      image-based
+                    </Box>
+                    <Box pl={1}>
+                      {imagePosts.map((item) => (
+                        <Box key={item.slug} mb={0.8} mt={0.8}>
+                          <Link
+                            className={` ${
+                              pathname === `/${item.slug}`
+                                ? "active"
+                                : "notActive"
+                            }`}
+                            href={`/${item.slug}`}
+                          >
+                            {locale === "en" ? (
+                              item.title
+                            ) : (
+                              <>
+                                {item.title_tw ? (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title_tw}
+                                  </Box>
+                                ) : (
+                                  <Box className={courier_prime400.className}>
+                                    {item.title}
+                                  </Box>
+                                )}
+                              </>
+                            )}
+                          </Link>
+                        </Box>
+                      ))}
+                    </Box>
                   </Box>
                 </Item>
               </Stack>
-            </Box>
-          </Item>
-          {/* desktop nav content */}
-          <Item sx={{ display: { xs: "none", md: "block" } }}>
-            <Box pb={2} mt={21}>
-              <Box
-                sx={{ textTransform: "uppercase" }}
-                pb={1}
-                className={courier_prime400.className}
-              >
-                material-based
-              </Box>
-              <Box pl={1}>
-                {materailPosts.map((item) => (
-                  <Box key={item.slug} mb={0.8} mt={0.8}>
-                    <Link
-                      className={`${
-                        pathname === `/${item.slug}` ? "active" : "notActive"
-                      }`}
-                      href={`/${item.slug}`}
-                    >
-                      {locale === "en" ? (
-                        item.title
-                      ) : (
-                        <>
-                          {item.title_tw ? (
-                            <Box className={courier_prime400.className}>
-                              {item.title_tw}
-                            </Box>
-                          ) : (
-                            <Box className={courier_prime400.className}>
-                              {item.title}
-                            </Box>
-                          )}
-                        </>
-                      )}
-                    </Link>
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-            <Box pb={2}>
-              <Box
-                sx={{ textTransform: "uppercase" }}
-                pb={1}
-                className={courier_prime400.className}
-              >
-                space-based
-              </Box>
-              <Box pl={1}>
-                {spacePosts.map((item) => (
-                  <Box key={item.slug} mb={0.8} mt={0.8}>
-                    <Link
-                      className={` ${
-                        pathname === `/${item.slug}` ? "active" : "notActive"
-                      }`}
-                      href={`/${item.slug}`}
-                    >
-                      {locale === "en" ? (
-                        item.title
-                      ) : (
-                        <>
-                          {item.title_tw ? (
-                            <Box className={courier_prime400.className}>
-                              {item.title_tw}
-                            </Box>
-                          ) : (
-                            <Box className={courier_prime400.className}>
-                              {item.title}
-                            </Box>
-                          )}
-                        </>
-                      )}
-                    </Link>
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-            <Box pb={2}>
-              <Box
-                sx={{ textTransform: "uppercase" }}
-                pb={1}
-                className={courier_prime400.className}
-              >
-                image-based
-              </Box>
-              <Box pl={1}>
-                {imagePosts.map((item) => (
-                  <Box key={item.slug} mb={0.8} mt={0.8}>
-                    <Link
-                      className={` ${
-                        pathname === `/${item.slug}` ? "active" : "notActive"
-                      }`}
-                      href={`/${item.slug}`}
-                    >
-                      {locale === "en" ? (
-                        item.title
-                      ) : (
-                        <>
-                          {item.title_tw ? (
-                            <Box className={courier_prime400.className}>
-                              {item.title_tw}
-                            </Box>
-                          ) : (
-                            <Box className={courier_prime400.className}>
-                              {item.title}
-                            </Box>
-                          )}
-                        </>
-                      )}
-                    </Link>
-                  </Box>
-                ))}
-              </Box>
-            </Box>
-          </Item>
-        </Stack>
-      </nav>
-    </Box>
+            </nav>
+          </Box>
+        </Box>
+      ) : null}
+    </>
   );
 }

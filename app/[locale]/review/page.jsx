@@ -3,7 +3,7 @@ import directus from "@/lib/directus";
 import { readItems } from "@directus/sdk";
 // import components
 import Box from "@mui/material/Box";
-import { courier_prime400 } from "@/app/[locale]/fonts";
+import { courier_prime400 } from "@/lib/fonts";
 
 async function getEnReviews() {
   try {
@@ -61,6 +61,7 @@ export const metadata = {
 };
 
 export default async function Reivew({ params }) {
+  const{ locale } = await params;
   const enReviews = await getEnReviews();
   const twReviews = await getTwReviews();
   //   console.log(params.locale);
@@ -70,7 +71,7 @@ export default async function Reivew({ params }) {
       mt={{ xs: -2, md: -1 }}
       sx={{ fontFamily: "Courier Prime", fontSize: { xs: "18px", md: "14px" } }}
     >
-      {params.locale === "en" ? (
+      {locale === "en" ? (
         <Box>
           {enReviews.map((item) => (
             <Box key={item.sort}>
