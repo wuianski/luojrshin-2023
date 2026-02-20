@@ -8,6 +8,7 @@ import MyLayout from "@/components/MyLayout";
 import "../globals.css";
 import "@/app/[locale]/work.css";
 /* next-intl */
+import { setRequestLocale } from "next-intl/server";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -144,6 +145,8 @@ export default async function RootLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
+
+  setRequestLocale(locale);
 
   return (
     <html lang={locale}>
