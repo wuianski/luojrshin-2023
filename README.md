@@ -1,25 +1,24 @@
-# Luo Jr-Shin #
+# Luo Jr-Shin
 
-## Prerequisites ##
+## Prerequisites
 
-- npm = 10.1.0
-- node = 20.8.0
+- npm = 10.9.2
+- node = 22.15.0
 
-## Install ##
+## Install
 
 ```sh
 npm install
 ```
 
-## Usage ##
+## Usage
 
 ```sh
 npm run dev / npm run build / npm run start
 ```
 
-## Note ##
+## Note
 
-## TODO ##
+## TODO
 
-- 
-  
+-
