@@ -30,7 +30,7 @@ async function getPage(slug) {
             },
           ],
         },
-      })
+      }),
     );
     return page;
   } catch (error) {
@@ -48,11 +48,11 @@ export async function generateMetadata({ params }) {
   return {
     title: `${page.title_tw.replace(/<[^>]+>/g, "")} ${page.title.replace(
       /<[^>]+>/g,
-      ""
+      "",
     )}  | 羅智信 Luo Jr-Shin`,
     description: `${page.content_tw.replace(
       /<[^>]+>/g,
-      ""
+      "",
     )} ${page.content_en.replace(/<[^>]+>/g, "")}`,
   };
 }
@@ -61,11 +61,12 @@ export default async function Page({ params }) {
   const page = await getPage((await params).slug);
   // const image_mode = page.mode.mode_name;
   // console.log(image_mode);
+  const { locale } = await params;
 
   return (
     <Box p={{ xs: 3, md: 4 }} mt={{ xs: 0, md: 0 }}>
       <Box mb={2}>
-        {(await params).locale === "en" ? (
+        {locale === "en" ? (
           <Box
             className="myLink"
             dangerouslySetInnerHTML={{ __html: page.content_en }}
@@ -89,13 +90,13 @@ export default async function Page({ params }) {
           {page.mode.mode_name === "grid" ? (
             <>
               {/* <PhotoGallery photos={page.image} /> */}
-              <PhotoGallery photos={page.content_imgs} params={params} />
+              <PhotoGallery photos={page.content_imgs} locale={locale} />
             </>
           ) : (
             <>
               <Box sx={{ width: { xs: "100%", md: "30vw" } }}>
                 {/* <OneColumn photos={page.image} /> */}
-                <OneColumn photos={page.content_imgs} params={params} />
+                <OneColumn photos={page.content_imgs} locale={locale} />
               </Box>
             </>
           )}
