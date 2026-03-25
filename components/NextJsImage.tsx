@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 // react-photo-album
@@ -12,10 +14,8 @@ export default function NextJsImage({
     "div",
     { style: { ...wrapperStyle, position: "relative" } },
     React.createElement(Image, {
-      // priority={true}
       fill: true,
       src: photo,
-      // quality: 100,
       placeholder: "blurDataURL" in photo ? "blur" : undefined,
       alt,
       title,

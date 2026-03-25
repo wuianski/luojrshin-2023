@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   isImageFitCover,
@@ -42,11 +44,10 @@ export default function NextJsImage({ slide, offset, rect }) {
     <div style={{ position: "relative", width, height }}>
       <Image
         fill
-        // priority={true}
         alt="work image"
         src={slide}
         // quality={100}
-        // loading="eager"
+        loading="eager"
         draggable={false}
         placeholder={slide.blurDataURL ? "blur" : undefined}
         style={{
